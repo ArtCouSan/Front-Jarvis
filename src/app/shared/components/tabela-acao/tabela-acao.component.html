@@ -1,0 +1,135 @@
+<mat-accordion>
+  <mat-expansion-panel
+    class="container"
+    (opened)="panelOpenState = true"
+    (closed)="panelOpenState = false"
+  >
+    <mat-expansion-panel-header>
+      <mat-panel-title> Relacao de acoes </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="tabela-container">
+      <table
+        mat-table
+        [dataSource]="dataSource"
+        class="mat-elevation-z8 tabela"
+      >
+        <!-- Position Column -->
+        <ng-container matColumnDef="ticket">
+          <th class="td" mat-header-cell *matHeaderCellDef>Ticket</th>
+          <td class="td" mat-cell *matCellDef="let element">
+            {{ element.ticket }}
+          </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="nome">
+          <th class="td" mat-header-cell *matHeaderCellDef>Acao</th>
+          <td class="td" mat-cell *matCellDef="let element">
+            {{ element.nome }}
+          </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="valorAtual">
+          <th class="td" mat-header-cell *matHeaderCellDef>Valor Atual</th>
+          <td class="td" mat-cell *matCellDef="let element">
+            {{ element.valorAtual }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="variacaoDia">
+          <th class="td" mat-header-cell *matHeaderCellDef>
+            % Variacao do Dia
+          </th>
+          <td class="td" mat-cell *matCellDef="let element">
+            {{ element.variacaoDia }}
+          </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="valorJusto">
+          <th class="td" mat-header-cell *matHeaderCellDef>Valor Justo</th>
+          <td class="td" mat-cell *matCellDef="let element">
+            {{ element.valorJusto }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="qntPapeis">
+          <th class="td" mat-header-cell *matHeaderCellDef>Qtn. Papeis</th>
+          <td class="td" mat-cell *matCellDef="let element">
+            {{ element.qntPapeis }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="porcentagemLucro">
+          <th class="td" mat-header-cell *matHeaderCellDef>% de Lucro</th>
+          <td class="td" mat-cell *matCellDef="let element">
+            {{ element.porcentagemLucro }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="margemDeQtn">
+          <th class="td" mat-header-cell *matHeaderCellDef>Margem de Qtn.</th>
+          <td class="td" mat-cell *matCellDef="let element">
+            {{ element.margemDeQtn }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="margemDeQtnDesejado">
+          <th class="td" mat-header-cell *matHeaderCellDef>
+            Margem de Qtn. Desejada
+          </th>
+          <td class="td" mat-cell *matCellDef="let element">
+            {{ element.margemDeQtnDesejado }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="totalDoPapel">
+          <th class="td" mat-header-cell *matHeaderCellDef>Total</th>
+          <td class="td" mat-cell *matCellDef="let element">
+            {{ element.totalDoPapel }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="acoes">
+          <th class="td --center" mat-header-cell *matHeaderCellDef>Acoes</th>
+          <td class="td" mat-cell *matCellDef="let element">
+            <div class="container-buttons">
+              <div class="container-button">
+                <button mat-mini-fab (click)="addAcao(element)">
+                  <mat-icon aria-hidden="false">add_shopping_cart</mat-icon>
+                </button>
+              </div>
+              <div class="container-button">
+                <button mat-mini-fab (click)="removerAcao(element)">
+                  <mat-icon aria-hidden="false">remove_shopping_cart</mat-icon>
+                </button>
+              </div>
+              <div class="container-button">
+                <button mat-mini-fab (click)="editAcao(element)">
+                  <mat-icon>edit</mat-icon>
+                </button>
+              </div>
+              <div class="container-button">
+                <button mat-mini-fab (click)="deleteAcao(element)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+              <div class="container-button">
+                <button
+                  mat-mini-fab
+                  aria-label="Example icon button with a heart icon"
+                >
+                  <mat-icon>expand_more</mat-icon>
+                </button>
+              </div>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

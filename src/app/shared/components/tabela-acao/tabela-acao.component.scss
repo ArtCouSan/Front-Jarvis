@@ -1,0 +1,34 @@
+.tabela {
+  height: 100%;
+  white-space: nowrap;
+}
+
+.container {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.tabela-container {
+  display: flex;
+  flex-wrap: wrap;
+  overflow-x: scroll;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.td {
+  border-right: 1px solid rgba(0, 0, 0, 0.12);
+  padding: 17px;
+}
+
+.container-buttons {
+  display: flex;
+}
+
+.container-button {
+  margin: 10px;
+}
+
+.--center {
+  text-align: center;
+}
