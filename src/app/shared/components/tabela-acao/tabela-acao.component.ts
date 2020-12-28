@@ -18,8 +18,9 @@ export class TabelaAcaoComponent implements OnInit {
   @Input() dataSource: Array<PapelVariavelModel>;
 
   panelOpenState = false;
+  panelSecondOpenState = false;
 
-  displayedColumns: string[] = ['ticket', 'nome', 'valorAtual', 'variacaoDia', 'valorJusto', 'qntPapeis', 'porcentagemLucro', 'margemDeQtn', 'margemDeQtnDesejado', 'totalDoPapel', 'acoes'];
+  displayedColumns: string[] = ['papelCorDeReferencia', 'ticket', 'nome', 'valorAtual', 'variacaoDia', 'valorJusto', 'qntPapeis', 'porcentagemLucro', 'margemDeQtn', 'margemDeQtnDesejado', 'totalDoPapel', 'acoes'];
 
   ngOnInit() {
   }
@@ -27,8 +28,9 @@ export class TabelaAcaoComponent implements OnInit {
   public addAcao(papel: PapelVariavelModel): void {
 
     const dialogRef = this.dialog.open(AddAcaoComponent, {
-      width: '500px',
-      height: "500px"
+      width: '400px',
+      height: "400px",
+      data: { papel: papel }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -40,8 +42,9 @@ export class TabelaAcaoComponent implements OnInit {
   public removerAcao(papel: PapelVariavelModel): void {
 
     const dialogRef = this.dialog.open(RemoverAcaoComponent, {
-      width: '500px',
-      height: "500px"
+      width: '400px',
+      height: "400px",
+      data: { papel: papel }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -54,7 +57,8 @@ export class TabelaAcaoComponent implements OnInit {
 
     const dialogRef = this.dialog.open(AlterarAcaoComponent, {
       width: '500px',
-      height: "500px"
+      height: "500px",
+      data: { papel: papel }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -67,7 +71,8 @@ export class TabelaAcaoComponent implements OnInit {
 
     const dialogRef = this.dialog.open(DeletarAcaoComponent, {
       width: '400px',
-      height: "200px"
+      height: "200px",
+      data: { papel: papel }
     });
 
     dialogRef.afterClosed().subscribe(result => {

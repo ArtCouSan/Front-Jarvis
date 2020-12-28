@@ -1,1 +1,59 @@
-<p>alterar-acao works!</p>
+<div class="container">
+  <h3>Alterar acao</h3>
+  <form [formGroup]="form">
+    <p>
+      <mat-form-field class="input" appearance="outline">
+        <mat-label>Ticket</mat-label>
+        <input formControlName="ticket" type="text" matInput />
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field class="input" appearance="outline">
+        <mat-label>Acao</mat-label>
+        <input formControlName="nome" type="text" matInput />
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field class="input" appearance="outline">
+        <mat-label>Valor Atual</mat-label>
+        <input formControlName="valorAtual" currencyMask matInput />
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field class="input" appearance="outline">
+        <mat-label>% Variacao do Dia</mat-label>
+        <input formControlName="variacaoDia" min="0" max="999" type="number" matInput />
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field class="input" appearance="outline">
+        <mat-label>Valor Justo</mat-label>
+        <input formControlName="valorJusto" currencyMask matInput />
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field class="input" appearance="outline">
+        <mat-label>Qtn. Papeis</mat-label>
+        <input formControlName="qntPapeis" min="0" max="999" type="number" matInput />
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field class="input" appearance="outline">
+        <mat-label>Margem de Qtn. Desejada</mat-label>
+        <input formControlName="margemDeQtnDesejado" min="0" max="999" type="number" matInput />
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field class="input" appearance="outline">
+        <mat-label>Cor de referencia</mat-label>
+        <input formControlName="papelCorDeReferencia" type="text" matInput />
+      </mat-form-field>
+    </p>
+    <div class="container-buttons">
+      <button class="button" mat-raised-button color="primary">Alterar</button>
+      <button class="button" (click)="onNoClick()" mat-raised-button color="warn">
+        Cancelar
+      </button>
+    </div>
+  </form>
+</div>

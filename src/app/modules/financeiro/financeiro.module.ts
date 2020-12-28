@@ -9,6 +9,7 @@ import { FiisComponent } from './variavel/fiis/fiis.component';
 import { SelicComponent } from './fixa/selic/selic.component';
 import { TodosFixaComponent } from './fixa/todos-fixa/todos-fixa.component';
 import { TabelaAcaoComponent } from 'src/app/shared/components/tabela-acao/tabela-acao.component';
+
 @NgModule({
   declarations: [
     TodosInvestimentosComponent,

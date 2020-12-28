@@ -1,1 +1,28 @@
-<p>remover-acao works!</p>
+<div class="container">
+    <h3>Quanto voce vendeu?</h3>
+    <p>
+      <mat-form-field class="input" appearance="outline">
+        <mat-label>Quantidade a ser removida</mat-label>
+        <input min="0" max="999" type="number" matInput />
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field class="input" appearance="outline">
+        <mat-label>Valor do papel</mat-label>
+        <input currencyMask matInput />
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field class="input" appearance="outline">
+        <mat-label>Data de venda</mat-label>
+        <input type="date" matInput />
+      </mat-form-field>
+    </p>
+    <div class="container-buttons">
+      <button class="button" mat-raised-button color="primary">Vender</button>
+      <button class="button" (click)="onNoClick()" mat-raised-button color="warn">
+        Cancelar
+      </button>
+    </div>
+  </div>
+  

@@ -17,30 +17,37 @@ export class FiisComponent implements OnInit {
 
   ngOnInit() {
 
+    // Listar papeis
     this.rendaVariavelService.listarPapeisRendaVariavel().subscribe({
       next: result => {
 
         this.dataSource = result;
+        const listaDadosLegenda = this.dataSource.map(papel => papel.ticket);
+        const listaDados = this.dataSource.map(papel => papel.valorAtual);
+        const listaDadosCor = this.dataSource.map(papel => papel.papelCorDeReferencia);
 
         let data = {
+          labels: listaDadosLegenda,
           datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(153, 102, 255, 0.2)',
-              'rgba(255, 159, 64, 0.2)'
-            ],
-            borderWidth: 1
+            label: 'R$ #',
+            data: listaDados,
+            borderWidth: 1,
+            backgroundColor: listaDadosCor
           }]
         };
 
         this.PieChart = new Chart("pieChart", {
           type: 'pie',
-          data: data
+          data: data,
+          options: {
+            title: {
+              display: true,
+              text: 'Grafico de valor total',
+              position: 'bottom',
+              fontSize: 14,
+              fontColor: 'black'              
+            }
+          }
         });
 
       }, error: error => {

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { MatButtonModule, MatDialogModule, MatExpansionModule, MatGridListModule, MatIconModule, MatListModule, MatMenuModule, MatSidenavModule, MatTableModule, MatTabsModule, MatToolbarModule } from '@angular/material';
+import { MatButtonModule, MatDialogModule, MatExpansionModule, MatFormFieldModule, MatGridListModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatSidenavModule, MatTableModule, MatTabsModule, MatToolbarModule } from '@angular/material';
 import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
@@ -17,6 +17,8 @@ import { ChartsModule } from 'ng2-charts';
     MatIconModule,
     MatDialogModule,
     MatExpansionModule,
+    MatFormFieldModule,
+    MatInputModule,
     ChartsModule
   ],
   providers: [],

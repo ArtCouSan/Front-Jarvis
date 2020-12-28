@@ -8,5 +8,6 @@ export interface PapelVariavelModel {
     porcentagemLucro: number,
     margemDeQtn: number,
     margemDeQtnDesejado: number,
-    totalDoPapel: number
+    totalDoPapel: number,
+    papelCorDeReferencia: string
 }

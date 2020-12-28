@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-deletar-acao',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeletarAcaoComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public dialogRef: MatDialogRef<DeletarAcaoComponent>) { }
 
   ngOnInit() {
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 
 }

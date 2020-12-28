@@ -25,6 +25,7 @@
     "dc": "^4.2.3",
     "epoch-charting": "^0.8.4",
     "ng2-charts": "^2.4.2",
+    "ngx-currency": "^2.5.2",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"

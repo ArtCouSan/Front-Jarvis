@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-add-acao',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddAcaoComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public dialogRef: MatDialogRef<AddAcaoComponent>) { }
 
   ngOnInit() {
   }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
 
 }
