@@ -50,7 +50,11 @@
       </mat-form-field>
     </p>
     <div class="container-buttons">
-      <button class="button" mat-raised-button color="primary">Alterar</button>
+      <button 
+      class="button" 
+      mat-raised-button 
+      [disabled]="!form.valid"
+      color="primary">Alterar</button>
       <button class="button" (click)="onNoClick()" mat-raised-button color="warn">
         Cancelar
       </button>

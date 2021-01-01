@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { PapelVariavelModel } from 'src/app/core/model/papel-variavel.model';
 
 @Component({
   selector: 'app-remover-acao',
@@ -9,7 +11,23 @@ import { MatDialogRef } from '@angular/material';
 export class RemoverAcaoComponent implements OnInit {
 
   constructor(
-    public dialogRef: MatDialogRef<RemoverAcaoComponent>) { }
+    @Inject(MAT_DIALOG_DATA) public data: { papel: PapelVariavelModel },
+    public dialogRef: MatDialogRef<RemoverAcaoComponent>,
+    public fb: FormBuilder) { }
+
+  form = this.fb.group({
+    qtn: new FormControl(0, [
+      Validators.required,
+      Validators.min(1)
+    ]),
+    valor: new FormControl(0, [
+      Validators.required,
+      Validators.min(0)
+    ]),
+    data: new FormControl(Date.now(), [
+      Validators.required
+    ]),
+  });
 
   ngOnInit() {
   }
@@ -18,5 +36,8 @@ export class RemoverAcaoComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  public vender(): void {
+
+  }
 
 }

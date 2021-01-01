@@ -1,9 +1,31 @@
+.container {
+  margin-bottom: 20px;
+}
+
 .legendas {
   width: 100%;
   margin-left: 10px;
+  text-align: center;
 }
 
 .scroll {
   overflow: auto;
 }
 
+app-pie-chart {
+  width: 100%;
+  height: 100%;
+}
+
+.container-item-header {
+  width: 50%;
+}
+
+.container-item-header--texto {
+  padding-left: 15px;
+}
+
+.container-item-header--icones {
+  text-align: end;
+    padding-right: 20px;
+}

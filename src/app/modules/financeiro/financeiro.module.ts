@@ -1,14 +1,16 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FinanceiroRoutingModule } from './financeiro-routing.module';
-import { TodosInvestimentosComponent } from './todos-investimentos/todos-investimentos.component';
+import { NgModule } from '@angular/core';
 import { MaterialModule } from 'src/app/material.module';
-import { AcaoComponent } from './variavel/acao/acao.component';
-import { TodosVariaveisComponent } from './variavel/todos-variaveis/todos-variaveis.component';
-import { FiisComponent } from './variavel/fiis/fiis.component';
+import { PieChartComponent } from 'src/app/shared/components/graficos/pie-chart/pie-chart.component';
+import { TabelaAcaoComponent } from 'src/app/shared/components/tabela-acao/tabela-acao.component';
+import { FinanceiroRoutingModule } from './financeiro-routing.module';
 import { SelicComponent } from './fixa/selic/selic.component';
 import { TodosFixaComponent } from './fixa/todos-fixa/todos-fixa.component';
-import { TabelaAcaoComponent } from 'src/app/shared/components/tabela-acao/tabela-acao.component';
+import { TodosInvestimentosComponent } from './todos-investimentos/todos-investimentos.component';
+import { AcaoComponent } from './variavel/acao/acao.component';
+import { FiisComponent } from './variavel/fiis/fiis.component';
+import { TodosVariaveisComponent } from './variavel/todos-variaveis/todos-variaveis.component';
+import { GraficoFiisComponent } from './variavel/fiis/grafico-fiis/grafico-fiis.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { TabelaAcaoComponent } from 'src/app/shared/components/tabela-acao/tabel
     FiisComponent,
     SelicComponent,
     TodosFixaComponent,
-    TabelaAcaoComponent
+    TabelaAcaoComponent,
+    PieChartComponent,
+    GraficoFiisComponent
   ],
   imports: [
     MaterialModule,

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { PapelVariavelModel } from 'src/app/core/model/papel-variavel.model';
 
 @Component({
   selector: 'app-add-acao',
@@ -9,13 +11,33 @@ import { MatDialogRef } from '@angular/material';
 export class AddAcaoComponent implements OnInit {
 
   constructor(
-    public dialogRef: MatDialogRef<AddAcaoComponent>) { }
+    @Inject(MAT_DIALOG_DATA) public data: { papel: PapelVariavelModel },
+    public dialogRef: MatDialogRef<AddAcaoComponent>,
+    public fb: FormBuilder) { }
 
+  form = this.fb.group({
+    qtn: new FormControl(0 , [
+      Validators.required,
+      Validators.min(1)
+    ]),
+    valor: new FormControl(0, [
+      Validators.required,
+      Validators.min(0)
+    ]),
+    data: new FormControl(Date.now(), [
+      Validators.required
+    ]),
+  });
+  
   ngOnInit() {
   }
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  public comprar(): void {
+    console.log("Oi")
   }
 
 

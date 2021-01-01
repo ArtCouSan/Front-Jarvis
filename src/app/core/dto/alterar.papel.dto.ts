@@ -1,4 +1,4 @@
-export interface PapelVariavelModel {
+export interface AlterarPapelDTO {
     ticket: string,
     nome: string,
     valorAtual: number,
@@ -9,6 +9,5 @@ export interface PapelVariavelModel {
     margemDeQtn: number,
     margemDeQtnDesejado: number,
     totalDoPapel: number,
-    papelCorDeReferencia: string,
-    setor: string,
+    papelCorDeReferencia: string
 }

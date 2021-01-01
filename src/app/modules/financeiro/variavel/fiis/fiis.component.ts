@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import * as Chart from 'chart.js';
+import { MatDialog } from '@angular/material';
+import { ConsolidadoFiisModel } from 'src/app/core/model/consolidado-fiis.model';
 import { PapelVariavelModel } from 'src/app/core/model/papel-variavel.model';
 import { RendaVariavelService } from 'src/app/core/services/renda-variavel.service';
+import { InserirAcaoComponent } from 'src/app/shared/components/modal/inserir-acao/inserir-acao.component';
 @Component({
   selector: 'app-fiis',
   templateUrl: './fiis.component.html',
@@ -9,52 +11,49 @@ import { RendaVariavelService } from 'src/app/core/services/renda-variavel.servi
 })
 export class FiisComponent implements OnInit {
 
-  constructor(private readonly rendaVariavelService: RendaVariavelService) { }
+  constructor(private readonly rendaVariavelService: RendaVariavelService,
+    public dialog: MatDialog) { }
 
-  PieChart;
+  public consolidadoFiis: ConsolidadoFiisModel;
 
-  public dataSource: Array<PapelVariavelModel>;
+  public listaPapeis: Array<PapelVariavelModel>;
+  public listaDadosLegenda: Array<string>;
+  public listaDados: Array<any>;
+  public listaDadosCor: Array<string>;
 
   ngOnInit() {
 
     // Listar papeis
-    this.rendaVariavelService.listarPapeisRendaVariavel().subscribe({
+    this.rendaVariavelService.pegarConsolidadoFiis().subscribe({
       next: result => {
 
-        this.dataSource = result;
-        const listaDadosLegenda = this.dataSource.map(papel => papel.ticket);
-        const listaDados = this.dataSource.map(papel => papel.valorAtual);
-        const listaDadosCor = this.dataSource.map(papel => papel.papelCorDeReferencia);
+        this.consolidadoFiis = result as ConsolidadoFiisModel;
 
-        let data = {
-          labels: listaDadosLegenda,
-          datasets: [{
-            label: 'R$ #',
-            data: listaDados,
-            borderWidth: 1,
-            backgroundColor: listaDadosCor
-          }]
-        };
+        this.listaPapeis = this.consolidadoFiis.papeis;
 
-        this.PieChart = new Chart("pieChart", {
-          type: 'pie',
-          data: data,
-          options: {
-            title: {
-              display: true,
-              text: 'Grafico de valor total',
-              position: 'bottom',
-              fontSize: 14,
-              fontColor: 'black'              
-            }
-          }
-        });
-
+        this.listaDadosLegenda = this.listaPapeis.map(papel => papel.ticket);
+        this.listaDados = this.listaPapeis.map(papel => papel.valorAtual);
+        this.listaDadosCor = this.listaPapeis.map(papel => papel.papelCorDeReferencia);    
+       
       }, error: error => {
 
       }
     });
  
   }
+
+  public inserirAcao(): void {
+
+    const dialogRef = this.dialog.open(InserirAcaoComponent, {
+      width: '1000px',
+      height: "500px"
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+
+  }
+
 
 }
