@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material';
 import { ConsolidadoFiisModel } from 'src/app/core/model/consolidado-fiis.model';
 import { PapelVariavelModel } from 'src/app/core/model/papel-variavel.model';
 import { RendaVariavelService } from 'src/app/core/services/renda-variavel.service';
-import { InserirAcaoComponent } from 'src/app/shared/components/modal/inserir-acao/inserir-acao.component';
+import { InserirAcaoComponent } from 'src/app/shared/components/modal/acao/inserir-acao/inserir-acao.component';
 @Component({
   selector: 'app-fiis',
   templateUrl: './fiis.component.html',
@@ -46,7 +46,8 @@ export class FiisComponent implements OnInit {
 
     const dialogRef = this.dialog.open(InserirAcaoComponent, {
       width: '1000px',
-      height: "500px"
+      height: "500px",
+      data: { tipoPapel: "fii" }
     });
 
     dialogRef.afterClosed().subscribe(result => {

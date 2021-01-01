@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import * as Chart from 'chart.js';
+import { MatDialog } from '@angular/material';
+import { ConsolidadoAcoesModel } from 'src/app/core/model/consolidado-acoes.model';
+import { PapelVariavelModel } from 'src/app/core/model/papel-variavel.model';
+import { RendaVariavelService } from 'src/app/core/services/renda-variavel.service';
+import { InserirAcaoComponent } from 'src/app/shared/components/modal/acao/inserir-acao/inserir-acao.component';
 
 @Component({
   selector: 'app-acao',
@@ -8,33 +12,50 @@ import * as Chart from 'chart.js';
 })
 export class AcaoComponent implements OnInit {
 
-  constructor() { }
+  constructor(private readonly rendaVariavelService: RendaVariavelService,
+    public dialog: MatDialog) { }
 
-  PieChart;
+  public consolidadoAcoes: ConsolidadoAcoesModel;
+
+  public listaPapeis: Array<PapelVariavelModel>;
+  public listaDadosLegenda: Array<string>;
+  public listaDados: Array<any>;
+  public listaDadosCor: Array<string>;
 
   ngOnInit() {
 
-    let data = {
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderWidth: 1
-        }]
-    };
+    // Listar papeis
+    this.rendaVariavelService.pegarConsolidadoFiis().subscribe({
+      next: result => {
 
-    this.PieChart = new Chart("pieChart", {
-      type: 'pie',
-      data: data
+        this.consolidadoAcoes = result as ConsolidadoAcoesModel;
+
+        this.listaPapeis = this.consolidadoAcoes.papeis;
+
+        this.listaDadosLegenda = this.listaPapeis.map(papel => papel.ticket);
+        this.listaDados = this.listaPapeis.map(papel => papel.valorAtual);
+        this.listaDadosCor = this.listaPapeis.map(papel => papel.papelCorDeReferencia);    
+       
+      }, error: error => {
+
+      }
+    });
+ 
+  }
+
+  public inserirAcao(): void {
+
+    const dialogRef = this.dialog.open(InserirAcaoComponent, {
+      width: '1000px',
+      height: "500px",
+      data: { tipoPapel: "acao" }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
     });
 
   }
+
 
 }

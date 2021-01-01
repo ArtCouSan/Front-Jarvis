@@ -1,0 +1,42 @@
+<div class="container">
+  <h3>Quanto voce comprou?</h3>
+  <form [formGroup]="form">
+    <p>
+      <mat-form-field class="input" appearance="outline">
+        <mat-label>Quantidade a ser adiconada</mat-label>
+        <input required  formControlName="qtn" min="0" max="999" type="number" matInput />
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field class="input" appearance="outline">
+        <mat-label>Valor do papel</mat-label>
+        <input required  formControlName="valor" currencyMask matInput />
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field class="input" appearance="outline">
+        <mat-label>Data de compra</mat-label>
+        <input required  formControlName="data" type="date" matInput />
+      </mat-form-field>
+    </p>
+    <div class="container-buttons">
+      <button
+        class="button"
+        mat-raised-button
+        color="primary"
+        [disabled]="!form.valid"
+        (click)="comprar()"
+      >
+        Comprar
+      </button>
+      <button
+        class="button"
+        (click)="onNoClick()"
+        mat-raised-button
+        color="warn"
+      >
+        Cancelar
+      </button>
+    </div>
+  </form>
+</div>

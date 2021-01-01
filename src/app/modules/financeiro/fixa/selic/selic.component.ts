@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import * as Chart from 'chart.js';
+import { MatDialog } from '@angular/material';
+import { ConsolidadoSelicModel } from 'src/app/core/model/consolidado-selic.model';
+import { PapelSelicModel } from 'src/app/core/model/papel-selic.model';
+import { RendaFixaService } from 'src/app/core/services/renda-fixa.service';
+import { InserirFixaComponent } from 'src/app/shared/components/modal/fixa/inserir-fixa/inserir-fixa.component';
 
 @Component({
   selector: 'app-selic',
@@ -8,32 +12,49 @@ import * as Chart from 'chart.js';
 })
 export class SelicComponent implements OnInit {
 
-  constructor() { }
+  constructor(private readonly rendaFixaService: RendaFixaService,
+    public dialog: MatDialog) { }
 
-  PieChart;
+  public consolidadoTitulos: ConsolidadoSelicModel;
+
+  public listaPapeis: Array<PapelSelicModel>;
+  public listaDadosLegenda: Array<string>;
+  public listaDados: Array<any>;
+  public listaDadosCor: Array<string>;
 
   ngOnInit() {
 
-    let data = {
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderWidth: 1
-        }]
-    };
+    // Listar papeis
+    this.rendaFixaService.pegarConsolidadoSelic().subscribe({
+      next: result => {
 
-    this.PieChart = new Chart("pieChart", {
-      type: 'pie',
-      data: data
+        this.consolidadoTitulos = result as ConsolidadoSelicModel;
+
+        this.listaPapeis = this.consolidadoTitulos.papeis;
+
+        this.listaDadosLegenda = this.listaPapeis.map(papel => papel.ticket);
+        this.listaDados = this.listaPapeis.map(papel => papel.valorAtual);
+        this.listaDadosCor = this.listaPapeis.map(papel => papel.papelCorDeReferencia);    
+       
+      }, error: error => {
+
+      }
+    });
+ 
+  }
+
+  public inserirTitulo(): void {
+
+    const dialogRef = this.dialog.open(InserirFixaComponent, {
+      width: '1000px',
+      height: "500px",
+      data: { tipoPapel: "acao" }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
     });
 
   }
+  
 }

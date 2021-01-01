@@ -13,11 +13,16 @@ import { MaterialModule } from './material.module';
 import { HomeComponent } from './modules/home/home.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { HeaderComponent } from './shared/components/header/header.component';
-import { AddAcaoComponent } from './shared/components/modal/add-acao/add-acao.component';
-import { AlterarAcaoComponent } from './shared/components/modal/alterar-acao/alterar-acao.component';
-import { DeletarAcaoComponent } from './shared/components/modal/deletar-acao/deletar-acao.component';
-import { InserirAcaoComponent } from './shared/components/modal/inserir-acao/inserir-acao.component';
-import { RemoverAcaoComponent } from './shared/components/modal/remover-acao/remover-acao.component';
+import { AddAcaoComponent } from './shared/components/modal/acao/add-acao/add-acao.component';
+import { AlterarAcaoComponent } from './shared/components/modal/acao/alterar-acao/alterar-acao.component';
+import { DeletarAcaoComponent } from './shared/components/modal/acao/deletar-acao/deletar-acao.component';
+import { InserirAcaoComponent } from './shared/components/modal/acao/inserir-acao/inserir-acao.component';
+import { RemoverAcaoComponent } from './shared/components/modal/acao/remover-acao/remover-acao.component';
+import { AddFixaComponent } from './shared/components/modal/fixa/add-fixa/add-fixa.component';
+import { AlterarFixaComponent } from './shared/components/modal/fixa/alterar-fixa/alterar-fixa.component';
+import { DeletarFixaComponent } from './shared/components/modal/fixa/deletar-fixa/deletar-fixa.component';
+import { InserirFixaComponent } from './shared/components/modal/fixa/inserir-fixa/inserir-fixa.component';
+import { RemoverFixaComponent } from './shared/components/modal/fixa/remover-fixa/remover-fixa.component';
 import { SidemenuComponent } from './shared/components/sidemenu/sidemenu.component';
 
 registerLocaleData(localeDECH);
@@ -44,7 +49,12 @@ export const customCurrencyMaskConfig = {
     AlterarAcaoComponent,
     DeletarAcaoComponent,
     InserirAcaoComponent,
-    RemoverAcaoComponent
+    RemoverAcaoComponent,
+    AddFixaComponent, 
+    AlterarFixaComponent,
+    DeletarFixaComponent,
+    InserirFixaComponent,
+    RemoverFixaComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,7 +70,12 @@ export const customCurrencyMaskConfig = {
     AlterarAcaoComponent,
     DeletarAcaoComponent,
     InserirAcaoComponent,
-    RemoverAcaoComponent
+    RemoverAcaoComponent,
+    AddFixaComponent, 
+    AlterarFixaComponent,
+    DeletarFixaComponent,
+    InserirFixaComponent,
+    RemoverFixaComponent,
   ],
   providers: [
     {

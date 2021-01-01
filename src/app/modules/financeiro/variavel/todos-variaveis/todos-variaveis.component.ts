@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as Chart from 'chart.js';
+import { ConsolidadoRendaVariavelModel } from 'src/app/core/model/consolidado-renda-variavel.model';
 
 @Component({
   selector: 'app-todos-variaveis',
@@ -8,33 +9,35 @@ import * as Chart from 'chart.js';
 })
 export class TodosVariaveisComponent implements OnInit {
 
-  constructor() { }
+  constructor(private readonly rendaVariavelService: RendaVariavelService,
+    public dialog: MatDialog) { }
 
-  PieChart;
-  
+  public consolidadoFiis: ConsolidadoFiisModel;
+
+  public listaPapeis: Array<PapelVariavelModel>;
+  public listaDadosLegenda: Array<string>;
+  public listaDados: Array<any>;
+  public listaDadosCor: Array<string>;
+
   ngOnInit() {
 
-    let data = {
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderWidth: 1
-        }]
-    };
+    // Listar papeis
+    this.rendaVariavelService.pegarConsolidadoFiis().subscribe({
+      next: result => {
 
-    this.PieChart = new Chart("pieChart", {
-      type: 'pie',
-      data: data
+        this.consolidadoFiis = result as ConsolidadoRendaVariavelModel;
+
+        this.listaPapeis = this.consolidadoFiis.papeis;
+
+        this.listaDadosLegenda = this.listaPapeis.map(papel => papel.ticket);
+        this.listaDados = this.listaPapeis.map(papel => papel.valorAtual);
+        this.listaDadosCor = this.listaPapeis.map(papel => papel.papelCorDeReferencia);    
+       
+      }, error: error => {
+
+      }
     });
-
+ 
   }
 
 }

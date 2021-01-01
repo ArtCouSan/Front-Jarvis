@@ -1,0 +1,33 @@
+<mat-accordion>
+  <mat-expansion-panel
+    class="container"
+    (opened)="panelOpenState = true"
+    (closed)="panelOpenState = false"
+  >
+    <mat-expansion-panel-header>
+      <mat-panel-title> Graficos </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-grid-list class="container" [rowHeight]="50" cols="2">
+      <mat-grid-tile [rowspan]="6" [colspan]="1">
+        <app-pie-chart
+          [listaDados]="listaDadosPorSetor"
+          [listaDadosLegenda]="listaDadosPorSetorLegenda"
+          [listaDadosCor]="listaDadosPorSetorCor"
+          [legenda]="'Setor #'"
+          [titulo]="'Grafico de setor'"
+          [id_]="'setor'"
+        ></app-pie-chart>
+      </mat-grid-tile>
+      <mat-grid-tile [rowspan]="6" [colspan]="1">
+        <app-pie-chart
+          [id_]="'setor2'"
+          [listaDados]="listaDadosPorQtnPapel"
+          [listaDadosLegenda]="listaDadosPorQtnPapelLegenda"
+          [listaDadosCor]="listaDadosPorQtnPapelCor"
+          [legenda]="'Quantidade de papel #'"
+          [titulo]="'Grafico de quantidade de papel'"
+        ></app-pie-chart>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-expansion-panel>
+</mat-accordion>
