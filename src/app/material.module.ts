@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { MatButtonModule, MatDialogModule, MatExpansionModule, MatFormFieldModule, MatGridListModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatSelectModule, MatSidenavModule, MatTableModule, MatTabsModule, MatToolbarModule } from '@angular/material';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
@@ -20,7 +21,8 @@ import { ChartsModule } from 'ng2-charts';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    ChartsModule
+    ChartsModule,
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: []

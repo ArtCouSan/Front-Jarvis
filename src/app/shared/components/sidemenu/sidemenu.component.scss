@@ -1,7 +1,93 @@
 .container {
-    height: 90%;
+  height: 100%;
+  background-color: #fafafb;
 }
 
 .sidemenu {
-    width: 190px;
+  width: 172px;
+  background-color: rgb(25, 133, 161);
+  border-right: 10px solid #16748b;
+}
+
+.sidemenu--color {
+  background-color: rgb(25, 133, 161);
+}
+
+.mat-expansion-panel-header-title {
+  color: rgb(220, 220, 221);
+  font-family: "Roboto", cursive;
+}
+
+.mat-expansion-panel:not([class*="mat-elevation-z"]) {
+  box-shadow: none !important;
+}
+
+.mat-expansion-panel-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 24px 0 0;
+  border-radius: inherit;
+}
+
+.mat-list-base {
+  padding-top: 0px;
+  display: block;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mat-list-base .mat-list-item,
+.mat-list-base .mat-list-option {
+  display: block;
+  height: 27px;
+  -webkit-tap-highlight-color: transparent;
+  width: 100%;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  font-family: "Roboto", cursive;
+}
+
+.item-menu {
+  padding-left: 10px;
+  font-size: 14px;
+  color: rgb(220, 220, 221);
+  font-family: cursive;
+}
+
+.item-titulo {
+  font-size: 15px;
+  color: rgb(220, 220, 221);
+  font-family: cursive;
+  font-weight: 700;
+}
+
+.item {
+  padding-left: 10px !important;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #16748B;
+
+    a {
+      background-color: #16748B;
+    }
+  }
+}
+
+::ng-deep .mat-expansion-panel-body {
+  padding: 0px !important;
+}
+
+.icone-topico {
+  color: rgb(220, 220, 221);
+  font-family: "Roboto", cursive;
+}
+
+::ng-deep .mat-expansion-panel-header-description,
+::ng-deep .mat-expansion-indicator::after {
+  color: rgb(220, 220, 221);
+  font-family: "Roboto", cursive;
 }

@@ -4,6 +4,8 @@ import { ConsolidadoAcoesModel } from 'src/app/core/model/consolidado-acoes.mode
 import { PapelVariavelModel } from 'src/app/core/model/papel-variavel.model';
 import { RendaVariavelService } from 'src/app/core/services/renda-variavel.service';
 import { InserirAcaoComponent } from 'src/app/shared/components/modal/acao/inserir-acao/inserir-acao.component';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-acao',
@@ -14,6 +16,8 @@ export class AcaoComponent implements OnInit {
 
   constructor(private readonly rendaVariavelService: RendaVariavelService,
     public dialog: MatDialog) { }
+
+  faPlus = faPlus;
 
   public consolidadoAcoes: ConsolidadoAcoesModel;
 
@@ -34,13 +38,13 @@ export class AcaoComponent implements OnInit {
 
         this.listaDadosLegenda = this.listaPapeis.map(papel => papel.ticket);
         this.listaDados = this.listaPapeis.map(papel => papel.valorAtual);
-        this.listaDadosCor = this.listaPapeis.map(papel => papel.papelCorDeReferencia);    
-       
+        this.listaDadosCor = this.listaPapeis.map(papel => papel.papelCorDeReferencia);
+
       }, error: error => {
 
       }
     });
- 
+
   }
 
   public inserirAcao(): void {

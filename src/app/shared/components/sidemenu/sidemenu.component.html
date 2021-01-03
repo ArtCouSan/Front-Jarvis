@@ -1,26 +1,60 @@
 <mat-drawer-container class="container">
-    <mat-drawer class="sidemenu" mode="side" opened>
-        <mat-nav-list>
-            <mat-list-item>
-                <button mat-button [matMenuTriggerFor]="financeiro">Financeiro</button>
-                <mat-menu #financeiro="matMenu">
-                  <button mat-menu-item [matMenuTriggerFor]="variavel">Renda Variavel</button>
-                  <button mat-menu-item [matMenuTriggerFor]="fixa">Renda Fixa</button>
-                  <a href="/financeiro/todos" mat-menu-item>Todos Investimentos</a>
-                </mat-menu>
-                <mat-menu #variavel="matMenu">
-                  <a href="/financeiro/variavel/acao" mat-menu-item>Acao</a>
-                  <a href="/financeiro/variavel/fiis" mat-menu-item>FIIS</a>
-                  <a href="/financeiro/variavel/todos" mat-menu-item>Todos</a>
-                </mat-menu>
-                <mat-menu #fixa="matMenu">
-                  <a href="/financeiro/fixa/selic" mat-menu-item>Selic</a>
-                  <a href="/financeiro/fixa/todos" mat-menu-item>Todos</a>
-                </mat-menu>
-            </mat-list-item>
-          </mat-nav-list>
-    </mat-drawer>
-    <mat-drawer-content>
-        <router-outlet></router-outlet>
-    </mat-drawer-content>
+  <mat-drawer class="sidemenu" mode="side" opened>
+    <mat-list>
+      <mat-accordion>
+        <mat-expansion-panel
+          class="sidemenu--color icone-topico"
+          (opened)="panelOpenState = true"
+          (closed)="panelOpenState = false"
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <mat-list-item class="item-titulo"> Financeiro </mat-list-item>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-list-item class="item">
+            <fa-icon class="icone-topico" [icon]="faAngleRight"></fa-icon>
+            <a href="/financeiro/todos" class="item-menu" mat-menu-item
+              >Todos</a
+            >
+          </mat-list-item>
+          <mat-list-item class="item-titulo"> Renda Variável </mat-list-item>
+          <mat-list-item class="item">
+            <fa-icon class="icone-topico" [icon]="faAngleRight"></fa-icon>
+            <a class="item-menu" href="/financeiro/variavel/acao" mat-menu-item
+              >Ação</a
+            >
+          </mat-list-item>
+          <mat-list-item class="item">
+            <fa-icon class="icone-topico" [icon]="faAngleRight"></fa-icon>
+            <a class="item-menu" href="/financeiro/variavel/fiis" mat-menu-item
+              >FIIS</a
+            >
+          </mat-list-item>
+          <mat-list-item class="item">
+            <fa-icon class="icone-topico" [icon]="faAngleRight"></fa-icon>
+            <a class="item-menu" href="/financeiro/variavel/todos" mat-menu-item
+              >Todos</a
+            >
+          </mat-list-item>
+          <mat-list-item class="item-titulo"> Renda Fixa </mat-list-item>
+          <mat-list-item class="item">
+            <fa-icon class="icone-topico" [icon]="faAngleRight"></fa-icon>
+            <a class="item-menu" href="/financeiro/fixa/selic" mat-menu-item
+              >Selic</a
+            >
+          </mat-list-item>
+          <mat-list-item class="item">
+            <fa-icon class="icone-topico" [icon]="faAngleRight"></fa-icon>
+            <a class="item-menu" href="/financeiro/fixa/todos" mat-menu-item
+              >Todos</a
+            >
+          </mat-list-item>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </mat-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
 </mat-drawer-container>

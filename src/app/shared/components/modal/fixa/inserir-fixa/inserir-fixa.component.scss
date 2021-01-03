@@ -5,6 +5,14 @@
 
 .container {
   text-align: center;
+  box-shadow: black 0px 0px 10px inset;
+  height: 90%;
+  width: 95%;
+  padding: 25px;
+}
+
+h3 {
+  margin: 0px !important;
 }
 
 .button {

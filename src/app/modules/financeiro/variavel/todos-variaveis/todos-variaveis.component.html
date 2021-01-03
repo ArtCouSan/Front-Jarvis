@@ -1,23 +1,23 @@
 <mat-grid-list class="container" [rowHeight]="50" cols="2">
   <mat-grid-tile [rowspan]="2" [colspan]="2">
     <div class="container-item-header container-item-header--texto">
-      <h3>Gerenciar Renda Variavel</h3>
+      <h3>Gerenciar Renda Variável</h3>
     </div>
   </mat-grid-tile>
-  <mat-grid-tile [rowspan]="6" [colspan]="1">
+  <mat-grid-tile [rowspan]="11" [colspan]="1">
     <app-pie-chart
       [listaDados]="listaDados"
       [listaDadosLegenda]="listaDadosLegenda"
       [listaDadosCor]="listaDadosCor"
       [legenda]="'RS #'"
-      [titulo]="'Grafico de valor total'"
+      [titulo]="'Gráfico de valor total'"
       [id_]="'valorTotal'"
     ></app-pie-chart>
   </mat-grid-tile>
   <mat-grid-tile [rowspan]="6" [colspan]="1">
     <div class="legendas">
-      <h1>Total de Papeis</h1>
-      <h1>{{ consolidadoAcoes.patrimonio | currency: "BRL" }}</h1>
+      <h1>Total</h1>
+      <h1>{{ consolidadoRendaVariavel.patrimonioTotal | currency: "BRL" }}</h1>
     </div>
   </mat-grid-tile>
 </mat-grid-list>

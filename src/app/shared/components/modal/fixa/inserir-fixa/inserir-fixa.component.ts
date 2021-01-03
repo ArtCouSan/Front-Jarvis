@@ -42,6 +42,9 @@ export class InserirFixaComponent implements OnInit {
     papelCorDeReferencia: new FormControl("", [
       Validators.required
     ]),
+    dataCompra: new FormControl("", [
+      Validators.required
+    ]),
   });
 
   ngOnInit() {

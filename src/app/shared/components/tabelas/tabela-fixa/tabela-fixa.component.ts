@@ -5,6 +5,7 @@ import { AddFixaComponent } from '../../modal/fixa/add-fixa/add-fixa.component';
 import { AlterarFixaComponent } from '../../modal/fixa/alterar-fixa/alterar-fixa.component';
 import { DeletarFixaComponent } from '../../modal/fixa/deletar-fixa/deletar-fixa.component';
 import { RemoverFixaComponent } from '../../modal/fixa/remover-fixa/remover-fixa.component';
+import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-tabela-fixa',
@@ -12,6 +13,9 @@ import { RemoverFixaComponent } from '../../modal/fixa/remover-fixa/remover-fixa
   styleUrls: ['./tabela-fixa.component.scss']
 })
 export class TabelaFixaComponent implements OnInit {
+
+  faPlus = faPlus;
+  faMinus = faMinus;
 
   constructor(public dialog: MatDialog) { }
 
@@ -28,7 +32,7 @@ export class TabelaFixaComponent implements OnInit {
   public addTitulo(papel: PapelSelicModel): void {
 
     const dialogRef = this.dialog.open(AddFixaComponent, {
-      width: '400px',
+      width: '600px',
       height: "400px",
       data: { papel: papel }
     });
@@ -42,7 +46,7 @@ export class TabelaFixaComponent implements OnInit {
   public removerTitulo(papel: PapelSelicModel): void {
 
     const dialogRef = this.dialog.open(RemoverFixaComponent, {
-      width: '400px',
+      width: '600px',
       height: "400px",
       data: { papel: papel }
     });
@@ -56,7 +60,7 @@ export class TabelaFixaComponent implements OnInit {
   public editTitulo(papel: PapelSelicModel): void {
 
     const dialogRef = this.dialog.open(AlterarFixaComponent, {
-      width: '500px',
+      width: '800px',
       height: "500px",
       data: { papel: papel }
     });

@@ -6,7 +6,7 @@ import * as Chart from 'chart.js';
   templateUrl: './pie-chart.component.html',
   styleUrls: ['./pie-chart.component.scss']
 })
-export class PieChartComponent implements AfterViewInit  {
+export class PieChartComponent implements AfterViewInit {
 
   public PieChart;
   @Input() public listaDadosLegenda: Array<string>;
@@ -17,7 +17,7 @@ export class PieChartComponent implements AfterViewInit  {
   @Input() public id_: string;
 
   constructor() { }
-  
+
   ngAfterViewInit() {
 
     this.PieChart = new Chart(this.id_, {
@@ -37,7 +37,8 @@ export class PieChartComponent implements AfterViewInit  {
           text: this.titulo,
           position: 'bottom',
           fontSize: 14,
-          fontColor: 'black'
+          fontColor: 'black',
+          fontFamily: 'cursive'
         }
       }
     });

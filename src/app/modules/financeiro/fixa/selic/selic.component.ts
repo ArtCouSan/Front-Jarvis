@@ -4,6 +4,7 @@ import { ConsolidadoSelicModel } from 'src/app/core/model/consolidado-selic.mode
 import { PapelSelicModel } from 'src/app/core/model/papel-selic.model';
 import { RendaFixaService } from 'src/app/core/services/renda-fixa.service';
 import { InserirFixaComponent } from 'src/app/shared/components/modal/fixa/inserir-fixa/inserir-fixa.component';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-selic',
@@ -11,6 +12,8 @@ import { InserirFixaComponent } from 'src/app/shared/components/modal/fixa/inser
   styleUrls: ['./selic.component.scss']
 })
 export class SelicComponent implements OnInit {
+
+  faPlus = faPlus;
 
   constructor(private readonly rendaFixaService: RendaFixaService,
     public dialog: MatDialog) { }

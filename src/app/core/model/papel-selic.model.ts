@@ -7,5 +7,6 @@ export interface PapelSelicModel {
     variacaoDia: number,
     qntPapeis: number,
     totalDoPapel: number,
-    papelCorDeReferencia: string
+    papelCorDeReferencia: string,
+    dataCompra: Date
 }

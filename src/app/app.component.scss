@@ -1,0 +1,73 @@
+.background--icones {
+  background-color: rgb(76, 92, 104);
+}
+
+::ng-deep .mat-flat-button.mat-accent,
+::ng-deep .mat-raised-button.mat-accent,
+::ng-deep .mat-fab.mat-accent,
+::ng-deep .mat-mini-fab.mat-accent {
+  background-color: rgb(76, 92, 104);
+}
+
+::ng-deep mat-dialog-container {
+  padding: 0px !important;
+}
+
+/* Border */
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: white;
+}
+/* Font color */
+input.mat-input-element {
+  color: white;
+}
+
+::ng-deep .mat-dialog-container {
+  color: #4c5c68;
+  text-align: center;
+}
+
+::ng-deep
+  .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid
+  .mat-form-field-outline-thick {
+  color: #4c5c68;
+}
+
+::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-label {
+  color: #4c5c68;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+  color: #4c5c68;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  display: flex;
+  position: absolute;
+  top: 0.25em;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  border-width: 2px;
+  color: #4c5c68;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-start {
+  border-radius: 5px 0 0 5px;
+  border-right-style: none;
+  border-width: 2px !important;
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-outline-gap {
+  border-top-color: transparent;
+  border-width: 2px;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-end {
+  border-width: 2px !important;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-gap {
+  border-width: 2px !important;
+}

@@ -5,6 +5,7 @@ import { AddAcaoComponent } from '../../modal/acao/add-acao/add-acao.component';
 import { AlterarAcaoComponent } from '../../modal/acao/alterar-acao/alterar-acao.component';
 import { DeletarAcaoComponent } from '../../modal/acao/deletar-acao/deletar-acao.component';
 import { RemoverAcaoComponent } from '../../modal/acao/remover-acao/remover-acao.component';
+import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-tabela-acao',
@@ -20,6 +21,9 @@ export class TabelaAcaoComponent implements OnInit {
   panelOpenState = false;
   panelSecondOpenState = false;
 
+  faPlus = faPlus;
+  faMinus = faMinus;
+  
   displayedColumns: string[] = ['papelCorDeReferencia', 'ticket', 'nome', 'valorAtual', 'variacaoDia', 'valorJusto', 'qntPapeis', 'porcentagemLucro', 'margemDeQtn', 'margemDeQtnDesejado', 'totalDoPapel', 'acoes'];
 
   ngOnInit() {
@@ -28,7 +32,7 @@ export class TabelaAcaoComponent implements OnInit {
   public addAcao(papel: PapelVariavelModel): void {
 
     const dialogRef = this.dialog.open(AddAcaoComponent, {
-      width: '400px',
+      width: '600px',
       height: "400px",
       data: { papel: papel }
     });
@@ -42,7 +46,7 @@ export class TabelaAcaoComponent implements OnInit {
   public removerAcao(papel: PapelVariavelModel): void {
 
     const dialogRef = this.dialog.open(RemoverAcaoComponent, {
-      width: '400px',
+      width: '600px',
       height: "400px",
       data: { papel: papel }
     });
@@ -56,7 +60,7 @@ export class TabelaAcaoComponent implements OnInit {
   public editAcao(papel: PapelVariavelModel): void {
 
     const dialogRef = this.dialog.open(AlterarAcaoComponent, {
-      width: '500px',
+      width: '800px',
       height: "500px",
       data: { papel: papel }
     });

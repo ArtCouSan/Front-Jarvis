@@ -4,8 +4,8 @@
       <h3>Gerenciar Selic</h3>
     </div>
     <div class="container-item-header container-item-header--icones">
-      <button mat-mini-fab>
-        <mat-icon (click)="inserirTitulo()" aria-hidden="false">add_shopping_cart</mat-icon>
+      <button (click)="inserirTitulo()" mat-mini-fab>
+        <fa-icon class="background--icones" [icon]="faPlus"></fa-icon>
       </button>
     </div>
   </mat-grid-tile>
@@ -15,7 +15,7 @@
       [listaDadosLegenda]="listaDadosLegenda"
       [listaDadosCor]="listaDadosCor"
       [legenda]="'RS #'"
-      [titulo]="'Grafico de valor total'"
+      [titulo]="'Gráfico de valor total'"
       [id_]="'valorTotal'"
     ></app-pie-chart>
   </mat-grid-tile>

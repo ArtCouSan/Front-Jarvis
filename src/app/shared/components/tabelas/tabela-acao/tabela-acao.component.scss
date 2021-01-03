@@ -5,7 +5,7 @@
 }
 
 .container {
-  margin-top: 50px;
+  margin-top: 0px;
   margin-bottom: 10px;
 }
 
@@ -20,6 +20,7 @@
   border-right: 1px solid rgba(0, 0, 0, 0.12);
   padding-right: 17px;
   padding-left: 17px;
+  font-weight: 700;
 }
 
 .container-buttons {
@@ -41,4 +42,32 @@
 .color-reference {
   width: 20px;
   height: 20px;
+}
+
+mat-panel-title {
+  font-weight: 700;
+}
+
+th {
+  font-weight: 700;
+  font-family: cursive;
+}
+
+td {
+  font-family: cursive;
+}
+
+::ng-deep .mat-expansion-indicator::after {
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  content: "";
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(45deg);
+  vertical-align: middle;
+  color: black !important;
+}
+
+mat-panel-title {
+  font-family: 'Roboto', cursive;
 }

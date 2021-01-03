@@ -1,9 +1,9 @@
 <div class="container">
-  <h3>Cadastrar acao</h3>
+  <h3>Cadastrar ação</h3>
   <form [formGroup]="form" class="container-inputs">
     <p>
       <mat-form-field class="input" appearance="outline">
-        <mat-label>Cor de referencia</mat-label>
+        <mat-label>Cor de referência</mat-label>
         <input formControlName="papelCorDeReferencia" type="text" matInput />
       </mat-form-field>
     </p>
@@ -15,7 +15,7 @@
     </p>
     <p>
       <mat-form-field class="input" appearance="outline">
-        <mat-label>Acao</mat-label>
+        <mat-label>Ação</mat-label>
         <input formControlName="nome" type="text" matInput />
       </mat-form-field>
     </p>
@@ -27,7 +27,7 @@
     </p>
     <p>
       <mat-form-field class="input" appearance="outline">
-        <mat-label>% Variacao do Dia</mat-label>
+        <mat-label>% Variação do Dia</mat-label>
         <input
           formControlName="variacaoDia"
           min="0"
@@ -65,6 +65,12 @@
           type="number"
           matInput
         />
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field class="input" appearance="outline">
+        <mat-label>Data de compra</mat-label>
+        <input required  formControlName="dataCompra" type="date" matInput />
       </mat-form-field>
     </p>
     <p>

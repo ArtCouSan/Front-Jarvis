@@ -13,4 +13,5 @@ export interface PapelVariavelModel {
     totalDoPapel: number,
     papelCorDeReferencia: string,
     setor: string,
+    dataCompra: Date
 }

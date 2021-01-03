@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
 import * as Chart from 'chart.js';
+import { ConsolidadoRendaFixaModel } from 'src/app/core/model/consolidado-renda-fixa.model';
+import { RendaFixaModel } from 'src/app/core/model/renda-fixa.model';
+import { RendaFixaService } from 'src/app/core/services/renda-fixa.service';
 
 @Component({
   selector: 'app-todos-fixa',
@@ -8,32 +12,35 @@ import * as Chart from 'chart.js';
 })
 export class TodosFixaComponent implements OnInit {
 
-  constructor() { }
+  constructor(private readonly rendaFixaService: RendaFixaService,
+    public dialog: MatDialog) { }
 
-  PieChart;
+  public consolidadoRendaFixa: ConsolidadoRendaFixaModel;
+
+  public listaRendas: Array<RendaFixaModel>;
+  public listaDadosLegenda: Array<string>;
+  public listaDados: Array<any>;
+  public listaDadosCor: Array<string>;
 
   ngOnInit() {
 
-    let data = {
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderWidth: 1
-        }]
-    };
+    // Listar papeis
+    this.rendaFixaService.pegarConsolidadoRendaFixa().subscribe({
+      next: result => {
 
-    this.PieChart = new Chart("pieChart", {
-      type: 'pie',
-      data: data
+        this.consolidadoRendaFixa = result as ConsolidadoRendaFixaModel;
+
+        this.listaRendas = this.consolidadoRendaFixa.renda;
+
+        this.listaDadosLegenda = this.listaRendas.map(renda => renda.tipoRenda);
+        this.listaDados = this.listaRendas.map(renda => renda.patrimonio);
+        this.listaDadosCor = this.listaRendas.map(renda => renda.corReferencia);    
+       
+      }, error: error => {
+
+      }
     });
-
+ 
   }
+  
 }

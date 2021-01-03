@@ -8,6 +8,7 @@ import { VariavelCadastrarPapelDTO } from '../dto/variavel-cadastrar.papel.dto';
 import { VariavelDeletarPapelDTO } from '../dto/variavel-deletar.papel.dto';
 import { ConsolidadoAcoesModel } from '../model/consolidado-acoes.model';
 import { ConsolidadoFiisModel } from '../model/consolidado-fiis.model';
+import { ConsolidadoRendaVariavelModel } from '../model/consolidado-renda-variavel.model';
 import { GraficoQuantidadePapelModel } from '../model/grafico-quantidade-papel.model';
 import { GraficoSetorModel } from '../model/grafico-setor.model';
 import { GraficosFiisModel } from '../model/graficos-fiis.model';
@@ -19,6 +20,24 @@ import { PapelVariavelModel } from '../model/papel-variavel.model';
 export class RendaVariavelService {
 
   constructor(private httpClient: HttpClient) { }
+
+  pegarConsolidadoRendaVariavel(): Observable<ConsolidadoRendaVariavelModel> {
+    return of({
+      patrimonioTotal: 1000,
+      renda: [
+        {
+          patrimonio: 500,
+          tipoRenda: "teste 1",
+          corReferencia: "#ab5133"
+        },
+        {
+          patrimonio: 500,
+          tipoRenda: "teste 2",
+          corReferencia: "#1c9e4e"
+        }
+      ]
+    })
+  }
 
   pegarConsolidadoAcoes(): Observable<ConsolidadoAcoesModel> {
 
@@ -67,7 +86,8 @@ export class RendaVariavelService {
         totalDoPapel: 80,
         papelCorDeReferencia: '#ab5133',
         setor: 'Sem',
-        tipoPapel: 'acao'
+        tipoPapel: 'acao',
+        dataCompra: new Date
       },
       {
         ticket: "Teste 2",
@@ -82,7 +102,8 @@ export class RendaVariavelService {
         totalDoPapel: 80,
         papelCorDeReferencia: '#648a1e',
         setor: 'Sem',
-        tipoPapel: 'acao'
+        tipoPapel: 'acao',
+        dataCompra: new Date
       },
       {
         ticket: "Teste 3",
@@ -97,7 +118,8 @@ export class RendaVariavelService {
         totalDoPapel: 80,
         papelCorDeReferencia: '#3d3fbf',
         setor: 'Sem',
-        tipoPapel: 'acao'
+        tipoPapel: 'acao',
+        dataCompra: new Date
       },
       {
         ticket: "Teste 4",
@@ -112,7 +134,8 @@ export class RendaVariavelService {
         totalDoPapel: 80,
         papelCorDeReferencia: '#1c9e4e',
         setor: 'Sem',
-        tipoPapel: 'acao'
+        tipoPapel: 'acao',
+        dataCompra: new Date
       }
     ]
 
@@ -176,7 +199,8 @@ export class RendaVariavelService {
         totalDoPapel: 80,
         papelCorDeReferencia: '#ab5133',
         setor: 'Sem',
-        tipoPapel: 'fii'
+        tipoPapel: 'fii',
+        dataCompra: new Date
       },
       {
         ticket: "Teste 2",
@@ -191,7 +215,8 @@ export class RendaVariavelService {
         totalDoPapel: 80,
         papelCorDeReferencia: '#648a1e',
         setor: 'Sem',
-        tipoPapel: 'fii'
+        tipoPapel: 'fii',
+        dataCompra: new Date
       },
       {
         ticket: "Teste 3",
@@ -206,7 +231,8 @@ export class RendaVariavelService {
         totalDoPapel: 80,
         papelCorDeReferencia: '#3d3fbf',
         setor: 'Sem',
-        tipoPapel: 'fii'
+        tipoPapel: 'fii',
+        dataCompra: new Date
       },
       {
         ticket: "Teste 4",
@@ -221,7 +247,8 @@ export class RendaVariavelService {
         totalDoPapel: 80,
         papelCorDeReferencia: '#1c9e4e',
         setor: 'Sem',
-        tipoPapel: 'fii'
+        tipoPapel: 'fii',
+        dataCompra: new Date
       }
     ]
 
@@ -252,7 +279,8 @@ export class RendaVariavelService {
       totalDoPapel: 80,
       papelCorDeReferencia: '#ab5133',
       setor: 'Sem',
-      tipoPapel: 'acao'
+      tipoPapel: 'acao',
+      dataCompra: new Date
     })
   }
 
@@ -270,7 +298,8 @@ export class RendaVariavelService {
       totalDoPapel: 80,
       papelCorDeReferencia: '#ab5133',
       setor: 'Sem',
-      tipoPapel: 'acao'
+      tipoPapel: 'acao',
+      dataCompra: new Date
     })
   }
 
@@ -288,7 +317,8 @@ export class RendaVariavelService {
       totalDoPapel: 80,
       papelCorDeReferencia: '#ab5133',
       setor: 'Sem',
-      tipoPapel: 'acao'
+      tipoPapel: 'acao',
+      dataCompra: new Date
     })
   }
 
@@ -306,7 +336,8 @@ export class RendaVariavelService {
       totalDoPapel: 80,
       papelCorDeReferencia: '#ab5133',
       setor: 'Sem',
-      tipoPapel: 'acao'
+      tipoPapel: 'acao',
+      dataCompra: new Date
     })
   }
 

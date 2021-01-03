@@ -6,6 +6,7 @@ import { FixaAddOrRemovePapelDto } from '../dto/fixa-add-remove.papel.dto';
 import { FixaAlterarPapelDTO } from '../dto/fixa-alterar.papel.dto';
 import { FixaCadastrarPapelDTO } from '../dto/fixa-cadastrar.papel.dto';
 import { FixaDeletarPapelDTO } from '../dto/fixa-deletar.papel.dto';
+import { ConsolidadoRendaFixaModel } from '../model/consolidado-renda-fixa.model';
 import { ConsolidadoSelicModel } from '../model/consolidado-selic.model';
 import { PapelSelicModel } from '../model/papel-selic.model';
 
@@ -15,6 +16,24 @@ import { PapelSelicModel } from '../model/papel-selic.model';
 export class RendaFixaService {
 
   constructor(private httpClient: HttpClient) { }
+
+  pegarConsolidadoRendaFixa(): Observable<ConsolidadoRendaFixaModel> {
+    return of({
+      patrimonioTotal: 1000,
+      renda: [
+        {
+          patrimonio: 500,
+          tipoRenda: "teste 1",
+          corReferencia: "#ab5133"
+        },
+        {
+          patrimonio: 500,
+          tipoRenda: "teste 2",
+          corReferencia: "#1c9e4e"
+        }
+      ]
+    })
+  }
 
   pegarConsolidadoSelic(): Observable<ConsolidadoSelicModel> {
 
@@ -27,7 +46,8 @@ export class RendaFixaService {
         qntPapeis: 8,
         totalDoPapel: 80,
         papelCorDeReferencia: '#ab5133',
-        tipoPapel: 'fii'
+        tipoPapel: 'fii',
+        dataCompra: new Date
       },
       {
         ticket: "Teste 2",
@@ -37,7 +57,8 @@ export class RendaFixaService {
         qntPapeis: 8,
         totalDoPapel: 80,
         papelCorDeReferencia: '#648a1e',
-        tipoPapel: 'fii'
+        tipoPapel: 'fii',
+        dataCompra: new Date
       },
       {
         ticket: "Teste 3",
@@ -47,7 +68,8 @@ export class RendaFixaService {
         qntPapeis: 8,
         totalDoPapel: 80,
         papelCorDeReferencia: '#3d3fbf',
-        tipoPapel: 'fii'
+        tipoPapel: 'fii',
+        dataCompra: new Date
       },
       {
         ticket: "Teste 4",
@@ -57,7 +79,8 @@ export class RendaFixaService {
         qntPapeis: 8,
         totalDoPapel: 80,
         papelCorDeReferencia: '#1c9e4e',
-        tipoPapel: 'fii'
+        tipoPapel: 'fii',
+        dataCompra: new Date
       }
     ]
 
@@ -85,7 +108,8 @@ export class RendaFixaService {
       totalDoPapel: 80,
       papelCorDeReferencia: '#ab5133',
       setor: 'Sem',
-      tipoPapel: 'acao'
+      tipoPapel: 'acao',
+      dataCompra: new Date
     })
   }
 
@@ -103,7 +127,8 @@ export class RendaFixaService {
       totalDoPapel: 80,
       papelCorDeReferencia: '#ab5133',
       setor: 'Sem',
-      tipoPapel: 'acao'
+      tipoPapel: 'acao',
+      dataCompra: new Date
     })
   }
 
@@ -121,7 +146,8 @@ export class RendaFixaService {
       totalDoPapel: 80,
       papelCorDeReferencia: '#ab5133',
       setor: 'Sem',
-      tipoPapel: 'acao'
+      tipoPapel: 'acao',
+      dataCompra: new Date
     })
   }
 
@@ -139,7 +165,8 @@ export class RendaFixaService {
       totalDoPapel: 80,
       papelCorDeReferencia: '#ab5133',
       setor: 'Sem',
-      tipoPapel: 'acao'
+      tipoPapel: 'acao',
+      dataCompra: new Date
     })
   }
 

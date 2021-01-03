@@ -5,7 +5,7 @@
     (closed)="panelOpenState = false"
   >
     <mat-expansion-panel-header>
-      <mat-panel-title> Relacao de titulos </mat-panel-title>
+      <mat-panel-title> Relação de títulos </mat-panel-title>
     </mat-expansion-panel-header>
     <div class="tabela-container">
       <table
@@ -15,7 +15,7 @@
       >
 
         <ng-container matColumnDef="papelCorDeReferencia">
-          <th class="td" mat-header-cell *matHeaderCellDef>Referencia</th>
+          <th class="td" mat-header-cell *matHeaderCellDef>Referência</th>
           <td class="td --center" mat-cell *matCellDef="let element">
             <button class="color-reference" [style.background-color]="element.papelCorDeReferencia" mat-mini-fab>
             </button>
@@ -31,7 +31,7 @@
 
         <!-- Name Column -->
         <ng-container matColumnDef="nome">
-          <th class="td" mat-header-cell *matHeaderCellDef>Titulo</th>
+          <th class="td" mat-header-cell *matHeaderCellDef>Título</th>
           <td class="td" mat-cell *matCellDef="let element">
             {{ element.nome }}
           </td>
@@ -47,7 +47,7 @@
 
         <ng-container matColumnDef="variacaoDia">
           <th class="td" mat-header-cell *matHeaderCellDef>
-            % Variacao do Dia
+            % Variação do Dia
           </th>
           <td class="td" mat-cell *matCellDef="let element">
             {{ element.variacaoDia | percent }}
@@ -74,12 +74,12 @@
             <div class="container-buttons">
               <div class="container-button">
                 <button mat-mini-fab (click)="addTitulo(element)">
-                  <mat-icon aria-hidden="false">add_shopping_cart</mat-icon>
+                  <fa-icon [icon]="faPlus"></fa-icon>
                 </button>
               </div>
               <div class="container-button">
                 <button mat-mini-fab (click)="removerTitulo(element)">
-                  <mat-icon aria-hidden="false">remove_shopping_cart</mat-icon>
+                  <fa-icon [icon]="faMinus"></fa-icon>
                 </button>
               </div>
               <div class="container-button">

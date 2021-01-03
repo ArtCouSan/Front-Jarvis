@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
 import { Chart } from 'chart.js';
+import { ConsolidadoRendasModel } from 'src/app/core/model/consolidado-rendas.model';
+import { RendaModel } from 'src/app/core/model/renda.model';
+import { RendaGeralService } from 'src/app/core/services/renda-geral.service';
 
 @Component({
   selector: 'app-todos-investimentos',
@@ -7,35 +11,39 @@ import { Chart } from 'chart.js';
   styleUrls: ['./todos-investimentos.component.scss']
 })
 export class TodosInvestimentosComponent implements OnInit {
+  
+  constructor(private readonly rendaGeralService: RendaGeralService,
+    public dialog: MatDialog) { }
 
-  constructor() { }
+  public consolidadoRendaGeral: ConsolidadoRendasModel;
 
-  PieChart;
+  public listaRendas: Array<RendaModel>;
+  public listaDadosLegenda: Array<string>;
+  public listaDados: Array<any>;
+  public listaDadosCor: Array<string>;
 
   ngOnInit() {
 
-    let data = {
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderWidth: 1
-        }]
-    };
+    // Listar papeis
+    this.rendaGeralService.pegarConsolidadoRenda().subscribe({
+      next: result => {
 
-    this.PieChart = new Chart("pieChart", {
-      type: 'pie',
-      data: data
+        this.consolidadoRendaGeral = result as ConsolidadoRendasModel;
+
+        this.listaRendas = this.consolidadoRendaGeral.renda;
+
+        this.listaDadosLegenda = this.listaRendas.map(renda => renda.tipoRenda);
+        this.listaDados = this.listaRendas.map(renda => renda.patrimonio);
+        this.listaDadosCor = this.listaRendas.map(renda => renda.corReferencia);    
+       
+      }, error: error => {
+
+      }
     });
-
+ 
   }
+
+
 }
 
 

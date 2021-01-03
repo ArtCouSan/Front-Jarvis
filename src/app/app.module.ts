@@ -6,6 +6,7 @@ import { LOCALE_ID } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgxCurrencyModule } from "ngx-currency";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -63,6 +64,7 @@ export const customCurrencyMaskConfig = {
     BrowserAnimationsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FontAwesomeModule,
     NgxCurrencyModule.forRoot(customCurrencyMaskConfig)
   ],
   entryComponents: [
