@@ -4,10 +4,9 @@ const app = express();
 
 app.use(express.static(__dirname + '/dist/front-jarvis'));
 
-app.get('/*', (req, resp) => {
-    resp.send(__dirname + '/dist/front-jarvis/index.html');
+app.get('/*', function (req, res) {
+    res.sendFile(path.join(__dirname +
+        '/dist/front-jarvis/index.html'));
 });
 
-app.listen(process.env.PORT || 5000, () => {
-    console.log("Servidor iniciado");
-})
+app.listen(process.env.PORT || 8080);
