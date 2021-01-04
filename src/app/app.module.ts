@@ -25,6 +25,7 @@ import { DeletarFixaComponent } from './shared/components/modal/fixa/deletar-fix
 import { InserirFixaComponent } from './shared/components/modal/fixa/inserir-fixa/inserir-fixa.component';
 import { RemoverFixaComponent } from './shared/components/modal/fixa/remover-fixa/remover-fixa.component';
 import { SidemenuComponent } from './shared/components/sidemenu/sidemenu.component';
+import { SubtituloComponent } from './shared/components/subtitulo/subtitulo.component';
 
 registerLocaleData(localeDECH);
 
@@ -44,6 +45,7 @@ export const customCurrencyMaskConfig = {
     AppComponent,
     HomeComponent,
     SidemenuComponent,
+    SubtituloComponent,
     FooterComponent,
     HeaderComponent,
     AddAcaoComponent, 

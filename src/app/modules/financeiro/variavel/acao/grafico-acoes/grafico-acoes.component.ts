@@ -11,6 +11,8 @@ import { RendaVariavelService } from 'src/app/core/services/renda-variavel.servi
 })
 export class GraficoAcoesComponent implements OnInit {
 
+  panelOpenState= false;
+
   @Input() public listaGraficos: GraficosAcoesModel;
 
   // Setor
