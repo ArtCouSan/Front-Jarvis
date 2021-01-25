@@ -18,7 +18,16 @@ export class FiisComponent implements OnInit {
 
   faPlus = faPlus;
 
-  public consolidadoFiis: ConsolidadoFiisModel;
+  public consolidadoFiis: ConsolidadoFiisModel = {
+    grafico: {
+      graficoQtnPapel: [],
+      graficoSetor: []
+    },
+    papeis: [],
+    patrimonio: [{
+      value: 0
+    }]
+  };
 
   public listaPapeis: Array<PapelVariavelModel>;
   public listaDadosLegenda: Array<string>;
@@ -31,15 +40,28 @@ export class FiisComponent implements OnInit {
     this.rendaVariavelService.pegarConsolidadoFiis().subscribe({
       next: result => {
 
-        this.consolidadoFiis = result as ConsolidadoFiisModel;
+        if(result.papeis.length > 0) {
 
-        this.listaPapeis = this.consolidadoFiis.papeis;
+          this.consolidadoFiis = result as ConsolidadoFiisModel;
 
-        this.listaDadosLegenda = this.listaPapeis.map(papel => papel.ticket);
-        this.listaDados = this.listaPapeis.map(papel => papel.valorAtual);
-        this.listaDadosCor = this.listaPapeis.map(papel => papel.papelCorDeReferencia);
+          this.listaPapeis = this.consolidadoFiis.papeis;
+  
+          this.listaDadosLegenda = this.listaPapeis.map(papel => papel.ticket);
+          this.listaDados = this.listaPapeis.map(papel => papel.totalDoPapel);
+          this.listaDadosCor = this.listaPapeis.map(papel => papel.papelCorDeReferencia);
+
+        } else {
+          
+          this.listaPapeis = [];
+          this.listaDadosLegenda = [];
+          this.listaDados = [];
+          this.listaDadosCor = [];
+
+        }
 
       }, error: error => {
+
+        console.log(error);
 
       }
     });
@@ -51,11 +73,17 @@ export class FiisComponent implements OnInit {
     const dialogRef = this.dialog.open(InserirAcaoComponent, {
       width: '1000px',
       height: "500px",
-      data: { tipoPapel: "fii" }
+      data: { tipoPapel: "FIIS" }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      
+      if(result) {
+
+        window.location.reload();
+
+      }
+
     });
 
   }

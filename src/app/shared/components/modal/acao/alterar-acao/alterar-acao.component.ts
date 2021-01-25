@@ -31,25 +31,13 @@ export class AlterarAcaoComponent implements OnInit {
     valorAtual: new FormControl(this.data.papel.valorAtual, [
       Validators.required
     ]),
-    variacaoDia: new FormControl(this.data.papel.variacaoDia, [
-      Validators.required
-    ]),
     valorJusto: new FormControl(this.data.papel.valorJusto, [
       Validators.required
     ]),
     qntPapeis: new FormControl(this.data.papel.qntPapeis, [
       Validators.required
     ]),
-    porcentagemLucro: new FormControl(this.data.papel.porcentagemLucro, [
-      Validators.required
-    ]),
-    margemDeQtn: new FormControl(this.data.papel.margemDeQtn, [
-      Validators.required
-    ]),
     margemDeQtnDesejado: new FormControl(this.data.papel.margemDeQtnDesejado, [
-      Validators.required
-    ]),
-    totalDoPapel: new FormControl(this.data.papel.totalDoPapel, [
       Validators.required
     ]),
     papelCorDeReferencia: new FormControl(this.data.papel.papelCorDeReferencia, [
@@ -61,17 +49,14 @@ export class AlterarAcaoComponent implements OnInit {
 
     this.papel = {
       id: this.data.papel.id,
-      margemDeQtn: this.data.papel.margemDeQtn,
       margemDeQtnDesejado: this.data.papel.margemDeQtnDesejado,
       nome: this.data.papel.nome,
       papelCorDeReferencia: this.data.papel.papelCorDeReferencia,
       porcentagemLucro: this.data.papel.porcentagemLucro,
       qntPapeis: this.data.papel.qntPapeis,
       ticket: this.data.papel.ticket,
-      totalDoPapel: this.data.papel.totalDoPapel,
       valorAtual: this.data.papel.valorAtual,
-      valorJusto: this.data.papel.valorJusto,
-      variacaoDia: this.data.papel.variacaoDia
+      valorJusto: this.data.papel.valorJusto
     }
 
   }
@@ -84,24 +69,24 @@ export class AlterarAcaoComponent implements OnInit {
 
     this.papel = {
       ...this.papel,
-      margemDeQtn: this.fb.control['margemDeQtn'].value,
-      margemDeQtnDesejado: this.fb.control['margemDeQtnDesejado'].value,
-      nome: this.fb.control['nome'].value,
-      papelCorDeReferencia: this.fb.control['papelCorDeReferencia'].value,
-      porcentagemLucro: this.fb.control['porcentagemLucro'].value,
-      qntPapeis: this.fb.control['qntPapeis'].value,
-      ticket: this.fb.control['ticket'].value,
-      totalDoPapel: this.fb.control['totalDoPapel'].value,
-      valorAtual: this.fb.control['valorAtual'].value,
-      valorJusto: this.fb.control['valorJusto'].value,
-      variacaoDia: this.fb.control['variacaoDia'].value
+      margemDeQtnDesejado: this.form.controls['margemDeQtnDesejado'].value,
+      nome: this.form.controls['nome'].value,
+      papelCorDeReferencia: this.form.controls['papelCorDeReferencia'].value,
+      qntPapeis: this.form.controls['qntPapeis'].value,
+      ticket: this.form.controls['ticket'].value,
+      valorAtual: this.form.controls['valorAtual'].value,
+      valorJusto: this.form.controls['valorJusto'].value
     }
 
     this.rendaVariavelService.alterarPapel(this.papel).subscribe({
       next: result => {
 
+        this.dialogRef.close({response: true, msg: "Sucesso"});
+
       }, error: error => {
-        
+
+        console.log(error);
+
       }
     })
 

@@ -18,7 +18,13 @@ export class SelicComponent implements OnInit {
   constructor(private readonly rendaFixaService: RendaFixaService,
     public dialog: MatDialog) { }
 
-  public consolidadoTitulos: ConsolidadoSelicModel;
+  public consolidadoTitulos: ConsolidadoSelicModel = {
+    grafico: [],
+    papeis: [],
+    patrimonio: [{
+      value: 0
+    }]
+  };
 
   public listaPapeis: Array<PapelSelicModel>;
   public listaDadosLegenda: Array<string>;
@@ -31,15 +37,28 @@ export class SelicComponent implements OnInit {
     this.rendaFixaService.pegarConsolidadoSelic().subscribe({
       next: result => {
 
-        this.consolidadoTitulos = result as ConsolidadoSelicModel;
+        if(result.papeis.length > 0) {
 
-        this.listaPapeis = this.consolidadoTitulos.papeis;
+          this.consolidadoTitulos = result as ConsolidadoSelicModel;
 
-        this.listaDadosLegenda = this.listaPapeis.map(papel => papel.ticket);
-        this.listaDados = this.listaPapeis.map(papel => papel.valorAtual);
-        this.listaDadosCor = this.listaPapeis.map(papel => papel.papelCorDeReferencia);    
-       
+          this.listaPapeis = this.consolidadoTitulos.papeis;
+  
+          this.listaDadosLegenda = this.listaPapeis.map(papel => papel.ticket);
+          this.listaDados = this.listaPapeis.map(papel => papel.valorAtual);
+          this.listaDadosCor = this.listaPapeis.map(papel => papel.papelCorDeReferencia);    
+         
+        }else {
+
+          this.listaPapeis = [];
+          this.listaDadosLegenda = [];
+          this.listaDados = [];
+          this.listaDadosCor = [];
+
+        }
+
       }, error: error => {
+
+        console.log(error);
 
       }
     });
@@ -51,11 +70,17 @@ export class SelicComponent implements OnInit {
     const dialogRef = this.dialog.open(InserirFixaComponent, {
       width: '1000px',
       height: "500px",
-      data: { tipoPapel: "acao" }
+      data: { tipoPapel: "SELIC" }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+
+      if(result) {
+
+        window.location.reload();
+
+      }
+
     });
 
   }

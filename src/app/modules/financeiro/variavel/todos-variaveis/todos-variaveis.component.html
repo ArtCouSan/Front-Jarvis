@@ -17,7 +17,7 @@
   <mat-grid-tile [rowspan]="6" [colspan]="1">
     <div class="legendas">
       <h1>Total</h1>
-      <h1>{{ consolidadoRendaVariavel.patrimonioTotal | currency: "BRL" }}</h1>
+      <h1>{{ consolidadoRendaVariavel.patrimonioTotal[0].value | currency: "BRL" }}</h1>
     </div>
   </mat-grid-tile>
 </mat-grid-list>

@@ -40,7 +40,7 @@ export class RemoverFixaComponent implements OnInit {
       data: new Date(),
       qtn: 0,
       valor: 0,
-      isAdd: true
+      isAdd: false
     }
   }
 
@@ -51,15 +51,19 @@ export class RemoverFixaComponent implements OnInit {
   public vender(): void {
     this.papel = {
       ...this.papel,
-      data: this.fb.control['data'].value,
-      qtn: this.fb.control['qtn'].value,
-      valor: this.fb.control['valor'].value
+      data: this.form.controls['data'].value,
+      qtn: this.form.controls['qtn'].value,
+      valor: this.form.controls['valor'].value
     }
 
     this.rendaVariavelService.addOuRemoverPapel(this.papel).subscribe({
       next: result => {
 
+        this.dialogRef.close({response: true, msg: "Sucesso"});
+
       }, error: error => {
+
+        console.log(error);
 
       }
     });

@@ -15,7 +15,12 @@ export class TodosInvestimentosComponent implements OnInit {
   constructor(private readonly rendaGeralService: RendaGeralService,
     public dialog: MatDialog) { }
 
-  public consolidadoRendaGeral: ConsolidadoRendasModel;
+  public consolidadoRendaGeral: ConsolidadoRendasModel = {
+    patrimonioTotal: [{
+      value: 0
+    }],
+    renda: []
+  };
 
   public listaRendas: Array<RendaModel>;
   public listaDadosLegenda: Array<string>;
@@ -28,15 +33,28 @@ export class TodosInvestimentosComponent implements OnInit {
     this.rendaGeralService.pegarConsolidadoRenda().subscribe({
       next: result => {
 
-        this.consolidadoRendaGeral = result as ConsolidadoRendasModel;
+        if(result.renda.length > 0) {
 
-        this.listaRendas = this.consolidadoRendaGeral.renda;
+          this.consolidadoRendaGeral = result as ConsolidadoRendasModel;
 
-        this.listaDadosLegenda = this.listaRendas.map(renda => renda.tipoRenda);
-        this.listaDados = this.listaRendas.map(renda => renda.patrimonio);
-        this.listaDadosCor = this.listaRendas.map(renda => renda.corReferencia);    
-       
+          this.listaRendas = this.consolidadoRendaGeral.renda;
+  
+          this.listaDadosLegenda = this.listaRendas.map(renda => renda.tipoRenda);
+          this.listaDados = this.listaRendas.map(renda => renda.patrimonio);
+          this.listaDadosCor = this.listaRendas.map(renda => renda.corReferencia);    
+         
+        } else {
+          
+          this.listaRendas = [];
+          this.listaDadosLegenda = [];
+          this.listaDados = [];
+          this.listaDadosCor = [];
+
+        }
+  
       }, error: error => {
+
+        console.log(error);
 
       }
     });

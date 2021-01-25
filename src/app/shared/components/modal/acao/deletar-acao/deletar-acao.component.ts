@@ -9,15 +9,12 @@ import { RendaVariavelService } from 'src/app/core/services/renda-variavel.servi
   templateUrl: './deletar-acao.component.html',
   styleUrls: ['./deletar-acao.component.scss']
 })
-export class DeletarAcaoComponent implements OnInit {
+export class DeletarAcaoComponent {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { papel: PapelVariavelModel },
     public dialogRef: MatDialogRef<DeletarAcaoComponent>,
     private readonly rendaVariavelService: RendaVariavelService) { }
-
-  ngOnInit() {
-  }
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -33,8 +30,12 @@ export class DeletarAcaoComponent implements OnInit {
     this.rendaVariavelService.deletarPapel(isDeletar).subscribe({
       next: result => {
 
+        this.dialogRef.close({response: true, msg: "Sucesso"});
+
       }, error: error => {
-        
+
+        console.log(error);
+
       }
     })
 

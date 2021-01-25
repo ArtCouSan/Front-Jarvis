@@ -22,11 +22,12 @@
   <mat-grid-tile [rowspan]="6" [colspan]="1">
     <div class="legendas">
       <h1>Total de Papeis</h1>
-      <h1>{{ consolidadoAcoes.patrimonio | currency: "BRL" }}</h1>
+      <h1>{{ consolidadoAcoes.patrimonio[0].value | currency: "BRL" }}</h1>
     </div>
   </mat-grid-tile>
 </mat-grid-list>
 <app-tabela-acao [dataSource]="listaPapeis"></app-tabela-acao>
 <app-grafico-acoes
+  *ngIf="listaPapeis.length > 0"
   [listaGraficos]="consolidadoAcoes.grafico"
 ></app-grafico-acoes>

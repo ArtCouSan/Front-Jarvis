@@ -22,8 +22,8 @@
   <mat-grid-tile [rowspan]="6" [colspan]="1">
     <div class="legendas">
       <h1>Total de títulos</h1>
-      <h1>{{ consolidadoTitulos.patrimonio | currency: "BRL" }}</h1>
+      <h1>{{ consolidadoTitulos.patrimonio[0].value | currency: "BRL" }}</h1>
     </div>
   </mat-grid-tile>
 </mat-grid-list>
-<app-tabela-fixa [dataSource]="listaPapeis"></app-tabela-fixa>
+<app-tabela-fixa *ngIf="listaPapeis.length > 0" [dataSource]="listaPapeis"></app-tabela-fixa>

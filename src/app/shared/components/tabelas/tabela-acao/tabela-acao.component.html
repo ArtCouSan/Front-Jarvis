@@ -50,7 +50,7 @@
             % Variacão do Dia
           </th>
           <td class="td" mat-cell *matCellDef="let element">
-            {{ element.variacaoDia | percent }}
+            {{ element.variacaoDia }}
           </td>
         </ng-container>
 
@@ -72,14 +72,14 @@
         <ng-container matColumnDef="porcentagemLucro">
           <th class="td" mat-header-cell *matHeaderCellDef>% de Lucro</th>
           <td class="td" mat-cell *matCellDef="let element">
-            {{ element.porcentagemLucro | percent }}
+            {{ element.porcentagemLucro }}
           </td>
         </ng-container>
 
         <ng-container matColumnDef="margemDeQtn">
           <th class="td" mat-header-cell *matHeaderCellDef>Margem de Qtn.</th>
           <td class="td" mat-cell *matCellDef="let element">
-            {{ element.margemDeQtn | percent }}
+            {{ element.margemDeQtn }}
           </td>
         </ng-container>
 
@@ -88,7 +88,7 @@
             Margem de Qtn. Desejada
           </th>
           <td class="td" mat-cell *matCellDef="let element">
-            {{ element.margemDeQtnDesejado | percent }}
+            {{ element.margemDeQtnDesejado }}
           </td>
         </ng-container>
 
@@ -119,7 +119,7 @@
                 </button>
               </div>
               <div class="container-button">
-                <button mat-mini-fab (click)="deleteAcao(element)">
+                <button [disabled]="!element.status" mat-mini-fab (click)="deleteAcao(element)">
                   <mat-icon>delete</mat-icon>
                 </button>
               </div>

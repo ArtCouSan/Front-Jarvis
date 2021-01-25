@@ -27,18 +27,6 @@
     </p>
     <p>
       <mat-form-field class="input" appearance="outline">
-        <mat-label>% Variação do Dia</mat-label>
-        <input
-          formControlName="variacaoDia"
-          min="0"
-          max="999"
-          type="number"
-          matInput
-        />
-      </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field class="input" appearance="outline">
         <mat-label>Valor Justo</mat-label>
         <input formControlName="valorJusto" currencyMask matInput />
       </mat-form-field>
@@ -76,7 +64,7 @@
     <p>
       <mat-form-field appearance="outline">
         <mat-label>Setor</mat-label>
-        <mat-select>
+        <mat-select formControlName="setor" >
           <mat-option value="option">Option 1</mat-option>
           <mat-option value="option">Option 2</mat-option>
           <mat-option value="option">Option 3</mat-option>

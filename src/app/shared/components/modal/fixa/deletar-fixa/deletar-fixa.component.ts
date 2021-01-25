@@ -9,15 +9,12 @@ import { RendaVariavelService } from 'src/app/core/services/renda-variavel.servi
   templateUrl: './deletar-fixa.component.html',
   styleUrls: ['./deletar-fixa.component.scss']
 })
-export class DeletarFixaComponent implements OnInit {
+export class DeletarFixaComponent {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { papel: PapelVariavelModel },
     public dialogRef: MatDialogRef<DeletarFixaComponent>,
     private readonly rendaVariavelService: RendaVariavelService) { }
-
-  ngOnInit() {
-  }
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -33,8 +30,12 @@ export class DeletarFixaComponent implements OnInit {
     this.rendaVariavelService.deletarPapel(isDeletar).subscribe({
       next: result => {
 
+        this.dialogRef.close({response: true, msg: "Sucesso"});
+
       }, error: error => {
-        
+
+        console.log(error);
+
       }
     })
 

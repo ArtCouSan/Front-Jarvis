@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { GraficoQuantidadePapelModel } from 'src/app/core/model/grafico-quantidade-papel.model';
 import { GraficoSetorModel } from 'src/app/core/model/grafico-setor.model';
 import { GraficosAcoesModel } from 'src/app/core/model/graficos-acoes.model';
@@ -27,7 +27,7 @@ export class GraficoAcoesComponent implements OnInit {
   public listaDadosPorQtnPapelCor: Array<string>;
   public listaQtnPapel: Array<GraficoQuantidadePapelModel>;
 
-  constructor(private readonly rendaVariavelService: RendaVariavelService) { }
+  constructor() { }
 
   ngOnInit() {
 

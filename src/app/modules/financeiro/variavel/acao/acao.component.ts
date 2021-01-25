@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { ConsolidadoAcoesModel } from 'src/app/core/model/consolidado-acoes.model';
 import { PapelVariavelModel } from 'src/app/core/model/papel-variavel.model';
@@ -19,7 +19,16 @@ export class AcaoComponent implements OnInit {
 
   faPlus = faPlus;
 
-  public consolidadoAcoes: ConsolidadoAcoesModel;
+  public consolidadoAcoes: ConsolidadoAcoesModel = {
+    grafico: {
+      graficoQtnPapel: [],
+      graficoSetor: []
+    },
+    papeis: [],
+    patrimonio: [{
+      value: 0
+    }]
+  };
 
   public listaPapeis: Array<PapelVariavelModel>;
   public listaDadosLegenda: Array<string>;
@@ -29,18 +38,31 @@ export class AcaoComponent implements OnInit {
   ngOnInit() {
 
     // Listar papeis
-    this.rendaVariavelService.pegarConsolidadoFiis().subscribe({
+    this.rendaVariavelService.pegarConsolidadoAcoes().subscribe({
       next: result => {
 
-        this.consolidadoAcoes = result as ConsolidadoAcoesModel;
+        if(result.papeis.length > 0) {
 
-        this.listaPapeis = this.consolidadoAcoes.papeis;
+          this.consolidadoAcoes = result as ConsolidadoAcoesModel;
 
-        this.listaDadosLegenda = this.listaPapeis.map(papel => papel.ticket);
-        this.listaDados = this.listaPapeis.map(papel => papel.valorAtual);
-        this.listaDadosCor = this.listaPapeis.map(papel => papel.papelCorDeReferencia);
+          this.listaPapeis = this.consolidadoAcoes.papeis;
+  
+          this.listaDadosLegenda = this.listaPapeis.map(papel => papel.ticket);
+          this.listaDados = this.listaPapeis.map(papel => papel.totalDoPapel);
+          this.listaDadosCor = this.listaPapeis.map(papel => papel.papelCorDeReferencia);
 
+        } else {
+
+          this.listaPapeis = [];
+          this.listaDadosLegenda = [];
+          this.listaDados = [];
+          this.listaDadosCor = [];
+
+        }
+        
       }, error: error => {
+
+        console.log(error);
 
       }
     });
@@ -52,11 +74,17 @@ export class AcaoComponent implements OnInit {
     const dialogRef = this.dialog.open(InserirAcaoComponent, {
       width: '1000px',
       height: "500px",
-      data: { tipoPapel: "acao" }
+      data: { tipoPapel: "ACOES" }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      
+      if(result) {
+
+        window.location.reload();
+
+      }
+
     });
 
   }

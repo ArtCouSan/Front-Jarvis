@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { PapelVariavelModel } from 'src/app/core/model/papel-variavel.model';
 import { AddAcaoComponent } from '../../modal/acao/add-acao/add-acao.component';
@@ -12,7 +12,7 @@ import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './tabela-acao.component.html',
   styleUrls: ['./tabela-acao.component.scss']
 })
-export class TabelaAcaoComponent implements OnInit {
+export class TabelaAcaoComponent implements OnChanges {
 
   constructor(public dialog: MatDialog) { }
 
@@ -26,7 +26,13 @@ export class TabelaAcaoComponent implements OnInit {
   
   displayedColumns: string[] = ['papelCorDeReferencia', 'ticket', 'nome', 'valorAtual', 'variacaoDia', 'valorJusto', 'qntPapeis', 'porcentagemLucro', 'margemDeQtn', 'margemDeQtnDesejado', 'totalDoPapel', 'acoes'];
 
-  ngOnInit() {
+   
+  ngOnChanges(changes: SimpleChanges): void {
+
+    if(changes.dataSource.currentValue) {
+      this.dataSource = changes.dataSource.currentValue;
+    }
+    
   }
 
   public addAcao(papel: PapelVariavelModel): void {
@@ -38,7 +44,13 @@ export class TabelaAcaoComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      
+      if(result) {
+
+        window.location.reload();
+
+      }
+
     });
 
   }
@@ -52,7 +64,13 @@ export class TabelaAcaoComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      
+      if(result) {
+
+        window.location.reload();
+
+      }
+
     });
 
   }
@@ -66,7 +84,13 @@ export class TabelaAcaoComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+     
+      if(result) {
+
+        window.location.reload();
+
+      }
+
     });
 
   }
@@ -80,7 +104,13 @@ export class TabelaAcaoComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+
+      if(result) {
+
+        window.location.reload();
+
+      }
+
     });
 
   }

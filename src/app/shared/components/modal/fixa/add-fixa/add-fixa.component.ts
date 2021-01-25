@@ -53,20 +53,23 @@ export class AddFixaComponent implements OnInit {
   public comprar(): void {
     this.papel = {
       ...this.papel,
-      data: this.fb.control['data'].value,
-      qtn: this.fb.control['qtn'].value,
-      valor: this.fb.control['valor'].value
+      data: this.form.controls['data'].value,
+      qtn: this.form.controls['qtn'].value,
+      valor: this.form.controls['valor'].value
     }
 
     this.rendaFixaService.addOuRemoverPapel(this.papel).subscribe({
       next: result => {
 
+        this.dialogRef.close({response: true, msg: "Sucesso"});
+
       }, error: error => {
+
+        console.log(error);
 
       }
     });
 
   }
-
 
 }

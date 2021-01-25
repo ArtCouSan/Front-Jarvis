@@ -10,7 +10,7 @@ import { RendaVariavelService } from 'src/app/core/services/renda-variavel.servi
   templateUrl: './inserir-fixa.component.html',
   styleUrls: ['./inserir-fixa.component.scss']
 })
-export class InserirFixaComponent implements OnInit {
+export class InserirFixaComponent {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { tipoPapel: string },
@@ -30,9 +30,6 @@ export class InserirFixaComponent implements OnInit {
     valorAtual: new FormControl(0, [
       Validators.required
     ]),
-    variacaoDia: new FormControl(0, [
-      Validators.required
-    ]),
     qntPapeis: new FormControl(0, [
       Validators.required
     ]),
@@ -47,9 +44,6 @@ export class InserirFixaComponent implements OnInit {
     ]),
   });
 
-  ngOnInit() {
-  }
-
   onNoClick(): void {
     this.dialogRef.close();
   }
@@ -57,21 +51,24 @@ export class InserirFixaComponent implements OnInit {
   public cadastrarAcao(): void {
 
     this.papel = {
-      nome: this.fb.control['nome'].value,
-      papelCorDeReferencia: this.fb.control['papelCorDeReferencia'].value,
-      qntPapeis: this.fb.control['qntPapeis'].value,
-      ticket: this.fb.control['ticket'].value,
-      totalDoPapel: this.fb.control['totalDoPapel'].value,
-      valorAtual: this.fb.control['valorAtual'].value,
-      variacaoDia: this.fb.control['variacaoDia'].value,
+      nome: this.form.controls['nome'].value,
+      papelCorDeReferencia: this.form.controls['papelCorDeReferencia'].value,
+      qntPapeis: this.form.controls['qntPapeis'].value,
+      ticket: this.form.controls['ticket'].value,
+      totalDoPapel: this.form.controls['totalDoPapel'].value,
+      valorAtual: this.form.controls['valorAtual'].value,
       tipoPapel: this.data.tipoPapel
     }
 
     this.rendaFixaService.cadastrarPapel(this.papel).subscribe({
       next: result => {
 
+        this.dialogRef.close({response: true, msg: "Sucesso"});
+
       }, error: error => {
-        
+
+        console.log(error);
+
       }
     })
 

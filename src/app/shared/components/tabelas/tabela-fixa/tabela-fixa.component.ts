@@ -24,7 +24,7 @@ export class TabelaFixaComponent implements OnInit {
   panelOpenState = false;
   panelSecondOpenState = false;
 
-  displayedColumns: string[] = ['papelCorDeReferencia', 'ticket', 'nome', 'valorAtual', 'variacaoDia', 'qntPapeis', 'totalDoPapel', 'acoes'];
+  displayedColumns: string[] = ['papelCorDeReferencia', 'ticket', 'nome', 'valorAtual', 'qntPapeis', 'totalDoPapel', 'acoes'];
 
   ngOnInit() {
   }
@@ -38,7 +38,11 @@ export class TabelaFixaComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      if(result) {
+
+        window.location.reload();
+
+      }
     });
 
   }
@@ -52,7 +56,11 @@ export class TabelaFixaComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      if(result) {
+
+        window.location.reload();
+
+      }
     });
 
   }
@@ -66,7 +74,11 @@ export class TabelaFixaComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      if(result) {
+
+        window.location.reload();
+
+      }
     });
 
   }
@@ -80,7 +92,11 @@ export class TabelaFixaComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      if(result) {
+
+        window.location.reload();
+
+      }
     });
 
   }

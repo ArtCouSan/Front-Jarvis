@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { VariavelCadastrarPapelDTO } from 'src/app/core/dto/variavel-cadastrar.papel.dto';
@@ -9,13 +9,15 @@ import { RendaVariavelService } from 'src/app/core/services/renda-variavel.servi
   templateUrl: './inserir-acao.component.html',
   styleUrls: ['./inserir-acao.component.scss']
 })
-export class InserirAcaoComponent implements OnInit {
+export class InserirAcaoComponent {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { tipoPapel: string },
     public dialogRef: MatDialogRef<InserirAcaoComponent>,
     public fb: FormBuilder,
     private readonly rendaVariavelService: RendaVariavelService) { }
+
+  @Output() cadastroEvento = new EventEmitter();
 
   public papel: VariavelCadastrarPapelDTO;
 
@@ -29,25 +31,13 @@ export class InserirAcaoComponent implements OnInit {
     valorAtual: new FormControl(0, [
       Validators.required
     ]),
-    variacaoDia: new FormControl(0, [
-      Validators.required
-    ]),
     valorJusto: new FormControl(0, [
       Validators.required
     ]),
     qntPapeis: new FormControl(0, [
       Validators.required
     ]),
-    porcentagemLucro: new FormControl(0, [
-      Validators.required
-    ]),
-    margemDeQtn: new FormControl(0, [
-      Validators.required
-    ]),
     margemDeQtnDesejado: new FormControl(0, [
-      Validators.required
-    ]),
-    totalDoPapel: new FormControl(0, [
       Validators.required
     ]),
     papelCorDeReferencia: new FormControl("", [
@@ -56,10 +46,10 @@ export class InserirAcaoComponent implements OnInit {
     dataCompra: new FormControl("", [
       Validators.required
     ]),
+    setor: new FormControl("", [
+      Validators.required
+    ]),
   });
-
-  ngOnInit() {
-  }
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -68,25 +58,27 @@ export class InserirAcaoComponent implements OnInit {
   public cadastrarAcao(): void {
 
     this.papel = {
-      margemDeQtn: this.fb.control['margemDeQtn'].value,
-      margemDeQtnDesejado: this.fb.control['margemDeQtnDesejado'].value,
-      nome: this.fb.control['nome'].value,
-      papelCorDeReferencia: this.fb.control['papelCorDeReferencia'].value,
-      porcentagemLucro: this.fb.control['porcentagemLucro'].value,
-      qntPapeis: this.fb.control['qntPapeis'].value,
-      ticket: this.fb.control['ticket'].value,
-      totalDoPapel: this.fb.control['totalDoPapel'].value,
-      valorAtual: this.fb.control['valorAtual'].value,
-      valorJusto: this.fb.control['valorJusto'].value,
-      variacaoDia: this.fb.control['variacaoDia'].value,
-      tipoPapel: this.data.tipoPapel
+      margemDeQtnDesejado: this.form.controls['margemDeQtnDesejado'].value,
+      nome: this.form.controls['nome'].value,
+      papelCorDeReferencia: this.form.controls['papelCorDeReferencia'].value,
+      qntPapeis: this.form.controls['qntPapeis'].value,
+      ticket: this.form.controls['ticket'].value,
+      valorAtual: this.form.controls['valorAtual'].value,
+      valorJusto: this.form.controls['valorJusto'].value,
+      dataCompra: this.form.controls['dataCompra'].value,
+      setor: this.form.controls['setor'].value,
+      tipoPapel: this.data.tipoPapel,
     }
 
     this.rendaVariavelService.cadastrarPapel(this.papel).subscribe({
       next: result => {
 
+        this.dialogRef.close({response: true, msg: "Sucesso"});
+
       }, error: error => {
-        
+
+        console.log(error);
+
       }
     })
 

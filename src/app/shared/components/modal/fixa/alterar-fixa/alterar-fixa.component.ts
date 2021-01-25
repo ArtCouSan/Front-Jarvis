@@ -32,9 +32,6 @@ export class AlterarFixaComponent implements OnInit {
     valorAtual: new FormControl(this.data.papel.valorAtual, [
       Validators.required
     ]),
-    variacaoDia: new FormControl(this.data.papel.variacaoDia, [
-      Validators.required
-    ]),
     qntPapeis: new FormControl(this.data.papel.qntPapeis, [
       Validators.required
     ]),
@@ -55,8 +52,7 @@ export class AlterarFixaComponent implements OnInit {
       qntPapeis: this.data.papel.qntPapeis,
       ticket: this.data.papel.ticket,
       totalDoPapel: this.data.papel.totalDoPapel,
-      valorAtual: this.data.papel.valorAtual,
-      variacaoDia: this.data.papel.variacaoDia
+      valorAtual: this.data.papel.valorAtual
     }
 
   }
@@ -69,19 +65,22 @@ export class AlterarFixaComponent implements OnInit {
 
     this.papel = {
       ...this.papel,
-      nome: this.fb.control['nome'].value,
-      papelCorDeReferencia: this.fb.control['papelCorDeReferencia'].value,
-      qntPapeis: this.fb.control['qntPapeis'].value,
-      ticket: this.fb.control['ticket'].value,
-      totalDoPapel: this.fb.control['totalDoPapel'].value,
-      valorAtual: this.fb.control['valorAtual'].value,
-      variacaoDia: this.fb.control['variacaoDia'].value
+      nome: this.form.controls['nome'].value,
+      papelCorDeReferencia: this.form.controls['papelCorDeReferencia'].value,
+      qntPapeis: this.form.controls['qntPapeis'].value,
+      ticket: this.form.controls['ticket'].value,
+      totalDoPapel: this.form.controls['totalDoPapel'].value,
+      valorAtual: this.form.controls['valorAtual'].value,
     }
 
     this.rendaFixaService.alterarPapel(this.papel).subscribe({
       next: result => {
 
+        this.dialogRef.close({response: true, msg: "Sucesso"});
+
       }, error: error => {
+
+        console.log(error);
         
       }
     })

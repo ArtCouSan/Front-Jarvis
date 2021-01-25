@@ -1,6 +1,7 @@
+import { Patrimonio } from "./patrimonio.model";
 import { RendaVariavelModel } from "./renda-variavel.model";
 
 export interface ConsolidadoRendaVariavelModel {
-    patrimonioTotal: number,
+    patrimonioTotal: Array<Patrimonio>,
     renda: Array<RendaVariavelModel>
 }

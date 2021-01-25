@@ -2,6 +2,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { environment } from 'src/app/environments/environment';
 import { VariavelAddOrRemovePapelDto } from '../dto/variavel-add-remove.papel.dto';
 import { VariavelAlterarPapelDTO } from '../dto/variavel-alterar.papel.dto';
 import { VariavelCadastrarPapelDTO } from '../dto/variavel-cadastrar.papel.dto';
@@ -22,323 +23,31 @@ export class RendaVariavelService {
   constructor(private httpClient: HttpClient) { }
 
   pegarConsolidadoRendaVariavel(): Observable<ConsolidadoRendaVariavelModel> {
-    return of({
-      patrimonioTotal: 1000,
-      renda: [
-        {
-          patrimonio: 500,
-          tipoRenda: "teste 1",
-          corReferencia: "#ab5133"
-        },
-        {
-          patrimonio: 500,
-          tipoRenda: "teste 2",
-          corReferencia: "#1c9e4e"
-        }
-      ]
-    })
+    return this.httpClient.get<ConsolidadoRendaVariavelModel>(`${environment.rendaVariavelApiURL}/consolidado`);
   }
 
   pegarConsolidadoAcoes(): Observable<ConsolidadoAcoesModel> {
-
-    const graficoSetor: Array<GraficoSetorModel> = [
-      {
-        setorCorDeReferencia: '#ab5133',
-        setor: 'string 1',
-        numeroSetores: 1
-      },
-      {
-        setorCorDeReferencia: '#1c9e4e',
-        setor: 'string 2',
-        numeroSetores: 2
-      },
-      {
-        setorCorDeReferencia: '#648a1e',
-        setor: 'string 3',
-        numeroSetores: 3
-      },
-      {
-        setorCorDeReferencia: '#3d3fbf',
-        setor: 'string 4',
-        numeroSetores: 4
-      }
-    ];
-
-    const graficoQtnPapel: Array<GraficoQuantidadePapelModel> = [
-      {
-        numeroQtnPapel: 2,
-        ticketPapel: 'string 1',
-        qtnPapelCorDeReferencia: "#3d3fbf"
-      }
-    ]
-
-    const papeis: Array<PapelVariavelModel> = [
-      {
-        ticket: "Teste 1",
-        nome: "Teste 1",
-        valorAtual: 1,
-        variacaoDia: 1,
-        valorJusto: 100,
-        qntPapeis: 8,
-        porcentagemLucro: 10,
-        margemDeQtn: 5,
-        margemDeQtnDesejado: 60,
-        totalDoPapel: 80,
-        papelCorDeReferencia: '#ab5133',
-        setor: 'Sem',
-        tipoPapel: 'acao',
-        dataCompra: new Date
-      },
-      {
-        ticket: "Teste 2",
-        nome: "Teste 2",
-        valorAtual: 2,
-        variacaoDia: 1,
-        valorJusto: 100,
-        qntPapeis: 8,
-        porcentagemLucro: 10,
-        margemDeQtn: 5,
-        margemDeQtnDesejado: 60,
-        totalDoPapel: 80,
-        papelCorDeReferencia: '#648a1e',
-        setor: 'Sem',
-        tipoPapel: 'acao',
-        dataCompra: new Date
-      },
-      {
-        ticket: "Teste 3",
-        nome: "Teste 3",
-        valorAtual: 3,
-        variacaoDia: 1,
-        valorJusto: 100,
-        qntPapeis: 8,
-        porcentagemLucro: 10,
-        margemDeQtn: 5,
-        margemDeQtnDesejado: 60,
-        totalDoPapel: 80,
-        papelCorDeReferencia: '#3d3fbf',
-        setor: 'Sem',
-        tipoPapel: 'acao',
-        dataCompra: new Date
-      },
-      {
-        ticket: "Teste 4",
-        nome: "Teste 4",
-        valorAtual: 4,
-        variacaoDia: 1,
-        valorJusto: 100,
-        qntPapeis: 8,
-        porcentagemLucro: 10,
-        margemDeQtn: 5,
-        margemDeQtnDesejado: 60,
-        totalDoPapel: 80,
-        papelCorDeReferencia: '#1c9e4e',
-        setor: 'Sem',
-        tipoPapel: 'acao',
-        dataCompra: new Date
-      }
-    ]
-
-    const patrimonio = 10000000;
-
-    return of(
-      {
-        grafico: {
-          graficoQtnPapel: graficoQtnPapel,
-          graficoSetor: graficoSetor
-        },
-        papeis: papeis,
-        patrimonio: patrimonio
-      })
+    return this.httpClient.get<ConsolidadoAcoesModel>(`${environment.rendaVariavelApiURL}/consolidado/acoes`);
   }
 
   pegarConsolidadoFiis(): Observable<ConsolidadoFiisModel> {
-
-    const graficoSetor: Array<GraficoSetorModel> = [
-      {
-        setorCorDeReferencia: '#ab5133',
-        setor: 'string 1',
-        numeroSetores: 1
-      },
-      {
-        setorCorDeReferencia: '#1c9e4e',
-        setor: 'string 2',
-        numeroSetores: 2
-      },
-      {
-        setorCorDeReferencia: '#648a1e',
-        setor: 'string 3',
-        numeroSetores: 3
-      },
-      {
-        setorCorDeReferencia: '#3d3fbf',
-        setor: 'string 4',
-        numeroSetores: 4
-      }
-    ];
-
-    const graficoQtnPapel: Array<GraficoQuantidadePapelModel> = [
-      {
-        numeroQtnPapel: 2,
-        ticketPapel: 'string 1',
-        qtnPapelCorDeReferencia: "#3d3fbf"
-      }
-    ]
-
-    const papeis: Array<PapelVariavelModel> = [
-      {
-        ticket: "Teste 1",
-        nome: "Teste 1",
-        valorAtual: 1,
-        variacaoDia: 1,
-        valorJusto: 100,
-        qntPapeis: 8,
-        porcentagemLucro: 10,
-        margemDeQtn: 5,
-        margemDeQtnDesejado: 60,
-        totalDoPapel: 80,
-        papelCorDeReferencia: '#ab5133',
-        setor: 'Sem',
-        tipoPapel: 'fii',
-        dataCompra: new Date
-      },
-      {
-        ticket: "Teste 2",
-        nome: "Teste 2",
-        valorAtual: 2,
-        variacaoDia: 1,
-        valorJusto: 100,
-        qntPapeis: 8,
-        porcentagemLucro: 10,
-        margemDeQtn: 5,
-        margemDeQtnDesejado: 60,
-        totalDoPapel: 80,
-        papelCorDeReferencia: '#648a1e',
-        setor: 'Sem',
-        tipoPapel: 'fii',
-        dataCompra: new Date
-      },
-      {
-        ticket: "Teste 3",
-        nome: "Teste 3",
-        valorAtual: 3,
-        variacaoDia: 1,
-        valorJusto: 100,
-        qntPapeis: 8,
-        porcentagemLucro: 10,
-        margemDeQtn: 5,
-        margemDeQtnDesejado: 60,
-        totalDoPapel: 80,
-        papelCorDeReferencia: '#3d3fbf',
-        setor: 'Sem',
-        tipoPapel: 'fii',
-        dataCompra: new Date
-      },
-      {
-        ticket: "Teste 4",
-        nome: "Teste 4",
-        valorAtual: 4,
-        variacaoDia: 1,
-        valorJusto: 100,
-        qntPapeis: 8,
-        porcentagemLucro: 10,
-        margemDeQtn: 5,
-        margemDeQtnDesejado: 60,
-        totalDoPapel: 80,
-        papelCorDeReferencia: '#1c9e4e',
-        setor: 'Sem',
-        tipoPapel: 'fii',
-        dataCompra: new Date
-      }
-    ]
-
-    const patrimonio = 10000000;
-
-    return of(
-      {
-        grafico: {
-          graficoQtnPapel: graficoQtnPapel,
-          graficoSetor: graficoSetor
-        },
-        papeis: papeis,
-        patrimonio: patrimonio
-      })
+    return this.httpClient.get<ConsolidadoFiisModel>(`${environment.rendaVariavelApiURL}/consolidado/fiis`);
   }
 
   addOuRemoverPapel(papel: VariavelAddOrRemovePapelDto): Observable<PapelVariavelModel> {
-    return of({
-      ticket: "Teste 1",
-      nome: "Teste 1",
-      valorAtual: 1,
-      variacaoDia: 1,
-      valorJusto: 100,
-      qntPapeis: 8,
-      porcentagemLucro: 10,
-      margemDeQtn: 5,
-      margemDeQtnDesejado: 60,
-      totalDoPapel: 80,
-      papelCorDeReferencia: '#ab5133',
-      setor: 'Sem',
-      tipoPapel: 'acao',
-      dataCompra: new Date
-    })
+    return this.httpClient.post<PapelVariavelModel>(`${environment.rendaVariavelApiURL}/${papel.id}`, papel);
   }
 
   alterarPapel(papel: VariavelAlterarPapelDTO): Observable<PapelVariavelModel> {
-    return of({
-      ticket: "Teste 1",
-      nome: "Teste 1",
-      valorAtual: 1,
-      variacaoDia: 1,
-      valorJusto: 100,
-      qntPapeis: 8,
-      porcentagemLucro: 10,
-      margemDeQtn: 5,
-      margemDeQtnDesejado: 60,
-      totalDoPapel: 80,
-      papelCorDeReferencia: '#ab5133',
-      setor: 'Sem',
-      tipoPapel: 'acao',
-      dataCompra: new Date
-    })
+    return this.httpClient.put<PapelVariavelModel>(`${environment.rendaVariavelApiURL}/${papel.id}`, papel);
   }
 
-  deletarPapel(deletar: VariavelDeletarPapelDTO): Observable<PapelVariavelModel>{
-    return of({
-      ticket: "Teste 1",
-      nome: "Teste 1",
-      valorAtual: 1,
-      variacaoDia: 1,
-      valorJusto: 100,
-      qntPapeis: 8,
-      porcentagemLucro: 10,
-      margemDeQtn: 5,
-      margemDeQtnDesejado: 60,
-      totalDoPapel: 80,
-      papelCorDeReferencia: '#ab5133',
-      setor: 'Sem',
-      tipoPapel: 'acao',
-      dataCompra: new Date
-    })
+  deletarPapel(deletar: VariavelDeletarPapelDTO): Observable<any> {
+    return this.httpClient.post<PapelVariavelModel>(`${environment.rendaVariavelApiURL}/deletar/${deletar.id}`, deletar);
   }
 
   cadastrarPapel(papel: VariavelCadastrarPapelDTO): Observable<PapelVariavelModel> {
-    return of({
-      ticket: "Teste 1",
-      nome: "Teste 1",
-      valorAtual: 1,
-      variacaoDia: 1,
-      valorJusto: 100,
-      qntPapeis: 8,
-      porcentagemLucro: 10,
-      margemDeQtn: 5,
-      margemDeQtnDesejado: 60,
-      totalDoPapel: 80,
-      papelCorDeReferencia: '#ab5133',
-      setor: 'Sem',
-      tipoPapel: 'acao',
-      dataCompra: new Date
-    })
+    return this.httpClient.post<PapelVariavelModel>(`${environment.rendaVariavelApiURL}`, papel);
   }
 
 }
